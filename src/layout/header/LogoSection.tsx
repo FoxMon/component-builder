@@ -7,7 +7,7 @@ export const LogoSection = () => {
 
   return (
     <ButtonBase disableRipple onClick={handleLogoButtonClick}>
-      <h1>HBPB</h1>
+      <h1 style={{ color: "white" }}>HBPB</h1>
     </ButtonBase>
   );
 };

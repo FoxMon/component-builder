@@ -1,19 +1,11 @@
 // material-ui
 import { useTheme } from "@mui/material/styles";
-import { Avatar, Box, ButtonBase } from "@mui/material";
-
-// assets
-import MenuIcon from "@mui/icons-material/Menu";
+import { Box } from "@mui/material";
 
 // project
 import { LogoSection } from "./LogoSection";
-import { SearchSection } from "./SearchSection";
 
-interface HeaderProps {
-  onLeftDrawerChangeEvent: () => void;
-}
-
-export const Header = ({ onLeftDrawerChangeEvent }: HeaderProps) => {
+export const Header = () => {
   const theme = useTheme();
 
   return (
@@ -34,20 +26,9 @@ export const Header = ({ onLeftDrawerChangeEvent }: HeaderProps) => {
         >
           <LogoSection />
         </Box>
-        <ButtonBase sx={{ borderRadius: "12px", overflow: "hidden" }}>
-          <Avatar
-            variant="rounded"
-            sx={{ transition: "all .2s ease-in-out" }}
-            onClick={onLeftDrawerChangeEvent}
-            color="inherit"
-          >
-            <MenuIcon />
-          </Avatar>
-        </ButtonBase>
       </Box>
       <Box sx={{ flexGrow: 1 }} />
       <Box sx={{ flexGrow: 1 }} />
-      <SearchSection />
     </>
   );
 };
