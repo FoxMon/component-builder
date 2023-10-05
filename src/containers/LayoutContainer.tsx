@@ -27,7 +27,7 @@ const Content = styled("main", {
 })(({ theme, open }: ContentProps) => ({
   borderBottomLeftRadius: 0,
   borderBottomRightRadius: 0,
-  background: "rgba(0, 0, 0, 0.1)",
+  background: "#f8fafc",
   marginTop: "66.72px",
   marginRight: "10px",
   borderRadius: "8px",
