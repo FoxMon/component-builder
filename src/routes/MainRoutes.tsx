@@ -1,12 +1,6 @@
-import { lazy } from "react";
-
 // proejct
 import { LayoutContainer } from "@/containers/LayoutContainer";
-import { Lodable } from "@/components/loader/Lodable";
-
-const MainPage = Lodable(
-  lazy(() => import("@/pages/Main").then(({ Main }) => ({ default: Main }))),
-);
+import { Main } from "@/pages/Main";
 
 export const MainRoutes = {
   path: "/",
@@ -14,7 +8,7 @@ export const MainRoutes = {
   children: [
     {
       path: "/",
-      element: <MainPage />,
+      element: <Main />,
     },
   ],
 };
