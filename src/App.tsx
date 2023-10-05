@@ -8,6 +8,7 @@ import {
 import { themePalette } from "./assets/theme/themePalette";
 
 // project
+import { AppErrorBoundary } from "./components/errorBoundaries/AppErrorBoundary";
 import { ScrollArea } from "./layout/ScrollArea";
 import { Routes } from "./routes";
 
@@ -16,9 +17,11 @@ function App() {
     <StyledEngineProvider injectFirst>
       <ThemeProvider theme={themePalette}>
         <CssBaseline />
-        <ScrollArea>
-          <Routes />
-        </ScrollArea>
+        <AppErrorBoundary>
+          <ScrollArea>
+            <Routes />
+          </ScrollArea>
+        </AppErrorBoundary>
       </ThemeProvider>
     </StyledEngineProvider>
   );
