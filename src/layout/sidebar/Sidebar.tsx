@@ -2,6 +2,9 @@
 import { useTheme } from "@mui/material/styles";
 import { Box, Drawer, useMediaQuery } from "@mui/material";
 
+// project
+import { SidebarItem } from "./SidebarItem";
+
 interface SidebarProps {
   isLeftDrawerOpen: boolean;
   onLeftDrawerChangeEvent: () => void;
@@ -43,7 +46,7 @@ export const Sidebar = ({
         ModalProps={{ keepMounted: true }}
         color="inherit"
       >
-        Sidebar
+        <SidebarItem />
       </Drawer>
     </Box>
   );
