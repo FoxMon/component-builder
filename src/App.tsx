@@ -1,12 +1,7 @@
-import { Builder } from "./core/builder/builder";
+import { Agent } from "./core/builder/agent";
 
 function App() {
-  const builder: Builder = new Builder();
-
-  const parentUid: string = builder.addChildNode("Box", "root", null);
-  builder.addChildNode("Input", parentUid, "Box");
-
-  console.log(builder);
+  console.log(Agent.Form("root"));
 
   return <div>Hello</div>;
 }
