@@ -5,7 +5,7 @@ import { ReactNode } from "react";
  *
  * [Input, Grid, etc ...]
  */
-export type CommonComponentType = "Box" | "Input";
+export type CommonComponentType = "Box" | "Form" | "Input";
 
 /**
  * Component Builder는 자신의 자식과 부모를 식별할 수 있어야 한다.
