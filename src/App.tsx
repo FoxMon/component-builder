@@ -1,3 +1,4 @@
+import { BrowserRouter } from "react-router-dom";
 import { CssBaseline, StyledEngineProvider } from "@mui/material";
 
 // project
@@ -7,14 +8,16 @@ import { Routes } from "./routes";
 
 function App() {
   return (
-    <StyledEngineProvider injectFirst>
-      <CssBaseline />
-      <AppErrorBoundary>
-        <ScrollArea>
-          <Routes />
-        </ScrollArea>
-      </AppErrorBoundary>
-    </StyledEngineProvider>
+    <BrowserRouter>
+      <StyledEngineProvider injectFirst>
+        <CssBaseline />
+        <AppErrorBoundary>
+          <ScrollArea>
+            <Routes />
+          </ScrollArea>
+        </AppErrorBoundary>
+      </StyledEngineProvider>
+    </BrowserRouter>
   );
 }
 
