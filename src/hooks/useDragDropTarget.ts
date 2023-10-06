@@ -11,7 +11,7 @@ import { agentBuilder } from "@/core/builder/agent";
 import type { CommonComponentType, Components } from "@/types/component";
 
 // utils
-import { possibleDragComponents } from "@/utils/components";
+import { components } from "@/utils/components";
 
 interface DropComponentItem {
   type: string;
@@ -26,7 +26,7 @@ interface DropComponentItem {
 export const useDragDropTarget = (
   cUid: string,
   isPossible: boolean = true,
-  accept: CommonComponentType[] = possibleDragComponents,
+  accept: CommonComponentType[] = components,
 ) => {
   const setTargetComponent = useSetRecoilState(targetComponent);
 
