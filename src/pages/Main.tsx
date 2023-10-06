@@ -1,7 +1,10 @@
 import { Box } from "@mui/material";
 
 // proejct
+import { WithLayout } from "@/hoc/withLayout";
 import { ComponentEditor } from "@/components/editor/ComponentEditor";
+
+const WrappedComponentEditor = WithLayout(ComponentEditor);
 
 export const Main = () => {
   return (
@@ -14,7 +17,7 @@ export const Main = () => {
         minHeight: "100vh",
       }}
     >
-      <ComponentEditor />
+      <WrappedComponentEditor />
     </Box>
   );
 };

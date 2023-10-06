@@ -1,26 +1,20 @@
 import { RecoilRoot } from "recoil";
-import { BrowserRouter } from "react-router-dom";
 import { CssBaseline, StyledEngineProvider } from "@mui/material";
 
 // project
 import { AppErrorBoundary } from "./components/errorBoundaries/AppErrorBoundary";
-import { ScrollArea } from "./layout/ScrollArea";
-import { Routes } from "./routes";
+import { MainRouter } from "@/routes/MainRouter";
 
 function App() {
   return (
-    <BrowserRouter>
-      <RecoilRoot>
-        <StyledEngineProvider injectFirst>
-          <CssBaseline />
-          <AppErrorBoundary>
-            <ScrollArea>
-              <Routes />
-            </ScrollArea>
-          </AppErrorBoundary>
-        </StyledEngineProvider>
-      </RecoilRoot>
-    </BrowserRouter>
+    <RecoilRoot>
+      <StyledEngineProvider injectFirst>
+        <CssBaseline />
+        <AppErrorBoundary>
+          <MainRouter />
+        </AppErrorBoundary>
+      </StyledEngineProvider>
+    </RecoilRoot>
   );
 }
 
