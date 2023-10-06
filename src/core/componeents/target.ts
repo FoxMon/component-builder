@@ -13,6 +13,9 @@ export interface TargetComponent {
   components: Components;
 }
 
+// 굳이 default가 있어야 하나?
+// Dragging을 하지 않았다면 충분히 null일 가능성이 존재한다.
+// 따라서 Nullable 타입으로 지정해야 하지 않을까...
 export const targetComponent = atom<TargetComponent>({
   key: "Selected:Target:Component",
   default: {
