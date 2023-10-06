@@ -3,12 +3,7 @@ import { Box } from "@mui/material";
 // proejct
 import { ComponentEditor } from "@/components/editor/ComponentEditor";
 
-// core
-import { Agent } from "@/core/builder/agent";
-
 export const Main = () => {
-  console.log(Agent.Form("root"));
-
   return (
     <Box
       sx={{

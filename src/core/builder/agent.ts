@@ -1,6 +1,6 @@
 import { Builder } from "./builder";
 import { Symbol } from "@/utils/symbol";
-import type { Components } from "@/types/component";
+import type { CommonComponentType, Components } from "@/types/component";
 
 /**
  * 생성된 Component의 Type
@@ -24,10 +24,14 @@ interface BuiltComponent {
   components: Components;
 }
 
+type GeneratorFunction = Partial<CommonComponentType | string>;
+
 /**
  * Generator 함수의 Type 정의
  */
-type AgentGeneratorFunction = (parent: string) => BuiltComponent;
+interface AgentGeneratorFunction {
+  [name: GeneratorFunction]: (parent: string) => BuiltComponent;
+}
 
 /**
  * Builder class를 활용하여 실질적으로 Component를 만드는데 필요한
@@ -63,9 +67,4 @@ export class Agent extends Symbol {
 
     return generatedFormComponent;
   }
-}
-
-{
-  // Agent's Form generator
-  Agent.Form = Agent.generateFormGroup;
 }
