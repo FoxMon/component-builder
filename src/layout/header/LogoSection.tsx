@@ -1,4 +1,4 @@
-import { ButtonBase } from "@mui/material";
+import { Box, ButtonBase, Typography } from "@mui/material";
 
 export const LogoSection = () => {
   const handleLogoButtonClick = () => {
@@ -6,8 +6,15 @@ export const LogoSection = () => {
   };
 
   return (
-    <ButtonBase disableRipple onClick={handleLogoButtonClick}>
-      <h1 style={{ color: "white" }}>HBPB</h1>
-    </ButtonBase>
+    <Box>
+      <ButtonBase disableRipple onClick={handleLogoButtonClick}>
+        <Typography
+          variant="subtitle1"
+          sx={{ color: "white", fontWeight: 800 }}
+        >
+          HBCB
+        </Typography>
+      </ButtonBase>
+    </Box>
   );
 };
