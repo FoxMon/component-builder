@@ -1,6 +1,11 @@
 import { DropTargetMonitor, useDrop } from "react-dnd";
 import { possibleDragComponents } from "@/utils/components";
+
+// type
 import type { CommonComponentType } from "@/types/component";
+
+// utils
+import { logging } from "@/utils/logger";
 
 interface DropComponentItem {
   cUid: string;
@@ -28,8 +33,8 @@ export const useDragDropTarget = (
       }
 
       // TODO...
-      console.log(cUid);
-      console.log(item);
+      logging(cUid);
+      logging(item);
     },
     canDrop: () => isPossible,
   });
