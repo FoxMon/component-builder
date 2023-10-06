@@ -2,17 +2,16 @@ import { DropTargetMonitor, useDrop } from "react-dnd";
 
 // recoil
 import { useSetRecoilState } from "recoil";
-import { targetComponentSelector } from "@/core/componeents/selectors/target";
+import { targetComponent } from "@/core/componeents/target";
 
 // core
-import { Agent } from "@/core/builder/agent";
+import { agentBuilder } from "@/core/builder/agent";
 
 // type
 import type { CommonComponentType, Components } from "@/types/component";
 
 // utils
 import { possibleDragComponents } from "@/utils/components";
-import { logging } from "@/utils/logger";
 
 interface DropComponentItem {
   type: string;
@@ -29,7 +28,7 @@ export const useDragDropTarget = (
   isPossible: boolean = true,
   accept: CommonComponentType[] = possibleDragComponents,
 ) => {
-  const setTargetComponent = useSetRecoilState(targetComponentSelector);
+  const setTargetComponent = useSetRecoilState(targetComponent);
 
   const [{ isOver }, drop] = useDrop({
     accept: accept,
@@ -42,13 +41,18 @@ export const useDragDropTarget = (
         return;
       }
 
-      // TODO...
-      logging(cUid);
-      logging(item);
+      const generatedComponent: Components = agentBuilder[item.type](
+        item.rootComponentType,
+      ).components;
+
+      const componentObject: Components = {};
+      Object.keys(generatedComponent).forEach((uid: string) => {
+        componentObject[uid] = generatedComponent[uid];
+      });
 
       setTargetComponent({
         selectedComponentUid: cUid,
-        components: {},
+        components: componentObject,
       });
     },
     canDrop: () => isPossible,
