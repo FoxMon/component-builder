@@ -1,8 +1,18 @@
-import { Box, Typography, Stack, Divider } from "@mui/material";
+import {
+  Box,
+  Typography,
+  Stack,
+  Divider,
+  Accordion,
+  AccordionSummary,
+  AccordionDetails,
+  TextField,
+} from "@mui/material";
 
 // assets
 import RestartAltIcon from "@mui/icons-material/RestartAlt";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 export const Observer = () => {
   return (
@@ -35,13 +45,85 @@ export const Observer = () => {
       >
         <Box>
           <Typography variant="caption" sx={{ cursor: "pointer", mr: 0.5 }}>
-            <RestartAltIcon fontSize="small" />
+            <RestartAltIcon sx={{ fontSize: "16px" }} />
           </Typography>
           <Typography variant="caption" sx={{ cursor: "pointer" }}>
-            <DeleteForeverIcon fontSize="small" />
+            <DeleteForeverIcon sx={{ fontSize: "16px" }} />
           </Typography>
         </Box>
       </Stack>
+      <Divider />
+      <Box>
+        <Accordion square disableGutters elevation={0}>
+          <AccordionSummary
+            expandIcon={<ExpandMoreIcon />}
+            sx={{ background: "#F7FAFC" }}
+          >
+            <Typography variant="subtitle2">Size</Typography>
+          </AccordionSummary>
+          <AccordionDetails
+            sx={{ display: "flex", alignItems: "center", gap: 1 }}
+          >
+            <Typography variant="caption" sx={{ fontWeight: "bold" }}>
+              Width
+            </Typography>
+            <TextField
+              size="small"
+              inputProps={{
+                style: {
+                  height: "18px",
+                },
+              }}
+            />
+          </AccordionDetails>
+        </Accordion>
+        <Accordion square disableGutters elevation={0}>
+          <AccordionSummary
+            expandIcon={<ExpandMoreIcon />}
+            sx={{ background: "#F7FAFC" }}
+          >
+            <Typography variant="subtitle2">Backgrounds</Typography>
+          </AccordionSummary>
+          <AccordionDetails
+            sx={{ display: "flex", alignItems: "center", gap: 1 }}
+          >
+            <Typography variant="caption" sx={{ fontWeight: "bold" }}>
+              Color
+            </Typography>
+            <TextField
+              size="small"
+              inputProps={{
+                style: {
+                  height: "18px",
+                },
+              }}
+            />
+          </AccordionDetails>
+        </Accordion>
+        <Accordion square disableGutters elevation={0}>
+          <AccordionSummary
+            expandIcon={<ExpandMoreIcon />}
+            sx={{ background: "#F7FAFC" }}
+          >
+            <Typography variant="subtitle2">Border</Typography>
+          </AccordionSummary>
+          <AccordionDetails
+            sx={{ display: "flex", alignItems: "center", gap: 1 }}
+          >
+            <Typography variant="caption" sx={{ fontWeight: "bold" }}>
+              Radius
+            </Typography>
+            <TextField
+              size="small"
+              inputProps={{
+                style: {
+                  height: "18px",
+                },
+              }}
+            />
+          </AccordionDetails>
+        </Accordion>
+      </Box>
       <Divider />
     </Box>
   );
