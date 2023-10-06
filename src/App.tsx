@@ -1,3 +1,4 @@
+import { RecoilRoot } from "recoil";
 import { BrowserRouter } from "react-router-dom";
 import { CssBaseline, StyledEngineProvider } from "@mui/material";
 
@@ -9,14 +10,16 @@ import { Routes } from "./routes";
 function App() {
   return (
     <BrowserRouter>
-      <StyledEngineProvider injectFirst>
-        <CssBaseline />
-        <AppErrorBoundary>
-          <ScrollArea>
-            <Routes />
-          </ScrollArea>
-        </AppErrorBoundary>
-      </StyledEngineProvider>
+      <RecoilRoot>
+        <StyledEngineProvider injectFirst>
+          <CssBaseline />
+          <AppErrorBoundary>
+            <ScrollArea>
+              <Routes />
+            </ScrollArea>
+          </AppErrorBoundary>
+        </StyledEngineProvider>
+      </RecoilRoot>
     </BrowserRouter>
   );
 }
