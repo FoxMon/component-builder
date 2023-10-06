@@ -1,4 +1,6 @@
 import { Outlet } from "react-router-dom";
+import { DndProvider } from "react-dnd";
+import { HTML5Backend } from "react-dnd-html5-backend";
 import { styled, Box, AppBar, Toolbar, CssBaseline } from "@mui/material";
 
 // project
@@ -34,13 +36,15 @@ export const LayoutContainer = () => {
           <Header />
         </Toolbar>
       </AppBar>
-      <Box sx={{ display: "flex" }}>
-        <Sidebar />
-        <Content>
-          <Outlet />
-        </Content>
-        <Observer />
-      </Box>
+      <DndProvider backend={HTML5Backend}>
+        <Box sx={{ display: "flex" }}>
+          <Sidebar />
+          <Content>
+            <Outlet />
+          </Content>
+          <Observer />
+        </Box>
+      </DndProvider>
     </Box>
   );
 };
