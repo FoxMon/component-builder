@@ -37,12 +37,11 @@ interface AgentGeneratorFunction {
  * Builder class를 활용하여 실질적으로 Component를 만드는데 필요한
  * 데이터를 만들기 위해 사용하는 Agent Class 정의
  */
-export class Agent extends Symbol {
-  // Agent의 Form Generator
-  public static Form: AgentGeneratorFunction;
-
+class Agent extends Symbol {
   constructor() {
     super("Coponent:Builder:Agent");
+
+    Symbol.freeze(this, Agent);
   }
 
   /**
@@ -67,4 +66,31 @@ export class Agent extends Symbol {
 
     return generatedFormComponent;
   }
+
+  /**
+   * Box를 생성하는 Method
+   *
+   * @param {string} parent
+   * @returns {BuiltComponent}
+   */
+  public static generateBox(parent: string): BuiltComponent {
+    const builder: Builder = new Builder("Box");
+
+    const generatedBoxId: string = builder.addChildNode("Box", parent, null);
+
+    const components: Components = builder.getComponents();
+
+    const generatedBoxComponent: BuiltComponent = {
+      root: generatedBoxId,
+      parent: parent,
+      components: components,
+    };
+
+    return generatedBoxComponent;
+  }
 }
+
+export const agentBuilder: AgentGeneratorFunction = {
+  Form: Agent.generateFormGroup,
+  Box: Agent.generateBox,
+};
