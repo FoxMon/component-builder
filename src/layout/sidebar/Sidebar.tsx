@@ -3,6 +3,12 @@ import { Box, Input } from "@mui/material";
 // proejct
 import { SidebarItem } from "./SidebarItem";
 
+// type
+import { CommonComponentType } from "@/types/component";
+
+// util
+import { MenuItem, menuItems } from "@/utils/menuItems";
+
 export const Sidebar = () => {
   return (
     <Box
@@ -42,11 +48,44 @@ export const Sidebar = () => {
         />
       </Box>
       <Box sx={{ p: 4, pt: 0 }}>
-        <SidebarItem />
-        <SidebarItem />
-        <SidebarItem />
-        <SidebarItem />
-        <SidebarItem />
+        {(Object.keys(menuItems) as CommonComponentType[]).map(
+          (name: string, idx: number) => {
+            const { children } = menuItems[name] as MenuItem;
+
+            if (children) {
+              const elem = Object.keys(children).map((chName: string) => (
+                <SidebarItem
+                  key={chName}
+                  name={chName}
+                  componentType={chName}
+                  rootComponentType={menuItems[name]?.rootComponentType || name}
+                  isChildComponent={true}
+                />
+              ));
+
+              return [
+                <SidebarItem
+                  key={name}
+                  name={name}
+                  componentType={name}
+                  rootComponentType={menuItems[name]?.rootComponentType || name}
+                  isChildComponent={false}
+                />,
+                ...elem,
+              ];
+            }
+
+            return (
+              <SidebarItem
+                key={`${name}:${idx}`}
+                name={name}
+                componentType={name}
+                rootComponentType={menuItems[name]?.rootComponentType || name}
+                isChildComponent={false}
+              />
+            );
+          },
+        )}
       </Box>
     </Box>
   );
