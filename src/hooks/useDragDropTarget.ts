@@ -1,5 +1,5 @@
 import { DropTargetMonitor, useDrop } from "react-dnd";
-import { possibleRootComponents } from "@/utils/components";
+import { possibleDragComponents } from "@/utils/components";
 import type { CommonComponentType } from "@/types/component";
 
 interface DropComponentItem {
@@ -14,7 +14,7 @@ interface DropComponentItem {
 export const useDragDropTarget = (
   cUid: string,
   isPossible: boolean = true,
-  accept: CommonComponentType[] = possibleRootComponents,
+  accept: CommonComponentType[] = possibleDragComponents,
 ) => {
   const [{ isOver }, drop] = useDrop({
     accept: accept,

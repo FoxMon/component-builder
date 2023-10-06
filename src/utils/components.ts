@@ -6,8 +6,8 @@ import type { CommonComponentType } from "@/types/component";
 export const components: CommonComponentType[] = ["Box", "Form", "Input"];
 
 /**
- * 부모가 될 수 있는 Root component 정의
+ * Drag가 될 수 있는 component 정의
  */
-export const possibleRootComponents: CommonComponentType[] = components.filter(
-  (name: CommonComponentType) => ["Box", "Form"].includes(name),
+export const possibleDragComponents: CommonComponentType[] = components.filter(
+  (name: CommonComponentType) => ["Box", "Form", "Input"].includes(name),
 );
