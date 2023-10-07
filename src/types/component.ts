@@ -52,3 +52,27 @@ export interface Components {
 export interface Children {
   children: ReactNode;
 }
+
+/**
+ * Top, Right, Bottom, Left로 Layout배치가
+ * 가능하다.
+ */
+export type Layout = "Top" | "Right" | "Bottom" | "Left";
+
+/**
+ * Component의 공통 props type 정의
+ * [Size, Spacing, Layout]
+ */
+export interface Props {
+  size: {
+    width: number;
+    height: number;
+  };
+  spacing: {
+    marginLeft: number;
+    marginTop: number;
+    marginRight: number;
+    marginBottom: number;
+  };
+  layout: Layout;
+}
