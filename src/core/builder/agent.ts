@@ -88,9 +88,36 @@ class Agent extends Symbol {
 
     return generatedBoxComponent;
   }
+
+  /**
+   * Input를 생성하는 Method
+   *
+   * @param {string} parent
+   * @returns {BuiltComponent}
+   */
+  public static generateInput(parent: string): BuiltComponent {
+    const builder: Builder = new Builder("Input");
+
+    const generatedInputId: string = builder.addChildNode(
+      "Input",
+      parent,
+      null,
+    );
+
+    const components: Components = builder.getComponents();
+
+    const generatedInputComponent: BuiltComponent = {
+      root: generatedInputId,
+      parent: parent,
+      components: components,
+    };
+
+    return generatedInputComponent;
+  }
 }
 
 export const agentBuilder: AgentGeneratorFunction = {
   Form: Agent.generateFormGroup,
   Box: Agent.generateBox,
+  Input: Agent.generateInput,
 };
