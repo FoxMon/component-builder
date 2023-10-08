@@ -1,14 +1,15 @@
-import { createElement } from "react";
 import { Box } from "@mui/material";
 
 // project
 import { OriginalComponent } from "./original/origialComponent";
+import { OriginalInput } from "./original/Originalinput";
 
 // util
 import { checkComponent } from "@/utils/components";
 
 // type
 import type { ComponentBase } from "@/types/component";
+import type { Nullable } from "@/types/common";
 
 /**
  * Component Creator의 props type 정의
@@ -41,16 +42,30 @@ export const Creator = ({
   // TODO: Props 추가
   const componentProps = {};
 
-  const childrenComponent = createElement(OriginalComponent[componentType], {
-    ...componentProps,
-    ...component.children.map((name: string) => <Box key={name}></Box>),
-  });
+  const originalComponentName: Nullable<string> =
+    OriginalComponent[componentType];
+
+  const generatedComponent: Nullable<JSX.Element> = (() => {
+    switch (originalComponentName) {
+      case "OriginalInput": {
+        return <OriginalInput {...componentProps} />;
+      }
+
+      default: {
+        return null;
+      }
+    }
+  })();
+
+  if (!generatedComponent) {
+    return null;
+  }
 
   // TODO: Drag 추가
   // 감싸여 졌다면 Box로 감싸 주도록 한다.
   if (isWrapped) {
-    return <Box>{childrenComponent}</Box>;
+    return <Box>{generatedComponent}</Box>;
   }
 
-  return childrenComponent;
+  return generatedComponent;
 };
