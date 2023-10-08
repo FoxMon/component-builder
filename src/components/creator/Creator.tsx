@@ -1,6 +1,9 @@
 import { createElement } from "react";
 import { Box } from "@mui/material";
 
+// project
+import { OriginalComponent } from "./original/origialComponent";
+
 // util
 import { checkComponent } from "@/utils/components";
 
@@ -38,11 +41,10 @@ export const Creator = ({
   // TODO: Props 추가
   const componentProps = {};
 
-  const childrenComponent = createElement(
-    componentType,
-    componentProps,
-    component.children.map((name: string) => <Box key={name}></Box>),
-  );
+  const childrenComponent = createElement(OriginalComponent[componentType], {
+    ...componentProps,
+    ...component.children.map((name: string) => <Box key={name}></Box>),
+  });
 
   // TODO: Drag 추가
   // 감싸여 졌다면 Box로 감싸 주도록 한다.
