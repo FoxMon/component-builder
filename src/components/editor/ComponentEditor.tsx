@@ -8,20 +8,18 @@ import { useDragDropTarget } from "@/hooks/useDragDropTarget";
 
 // recoil
 import { useRecoilValue } from "recoil";
-import { targetComponentSelector } from "@/core/componeents/selectors/target";
+import { placedTargetComponentSelector } from "@/core/componeents/selectors/target";
 
 // type
 import type { Nullable } from "@/types/common";
-import type { TargetComponent } from "@/core/componeents/target";
+import type { Components } from "@/types/component";
 
 export const ComponentEditor = () => {
   const { drop } = useDragDropTarget("root", true);
 
-  const targetComponent: Nullable<TargetComponent> = useRecoilValue(
-    targetComponentSelector,
+  const placedComponent: Nullable<Components> = useRecoilValue(
+    placedTargetComponentSelector,
   );
-
-  console.log(targetComponent);
 
   return (
     <Box
@@ -35,14 +33,12 @@ export const ComponentEditor = () => {
         display: "flex",
       }}
     >
-      {targetComponent ? (
-        Object.keys(targetComponent.components).map((key: string) => (
+      {placedComponent ? (
+        Object.keys(placedComponent).map((key: string) => (
           <Creator
             key={key}
-            componentType={
-              targetComponent?.components[key]?.commonComponentType
-            }
-            component={targetComponent?.components[key]}
+            componentType={placedComponent[key]?.commonComponentType}
+            component={placedComponent[key]}
             isWrapped={false}
           />
         ))
