@@ -1,10 +1,27 @@
 import { Box, Typography } from "@mui/material";
 
+// project
+import { Creator } from "../creator/Creator";
+
 // hooks
 import { useDragDropTarget } from "@/hooks/useDragDropTarget";
 
+// recoil
+import { useRecoilValue } from "recoil";
+import { targetComponentSelector } from "@/core/componeents/selectors/target";
+
+// type
+import type { Nullable } from "@/types/common";
+import type { TargetComponent } from "@/core/componeents/target";
+
 export const ComponentEditor = () => {
   const { drop } = useDragDropTarget("root", true);
+
+  const targetComponent: Nullable<TargetComponent> = useRecoilValue(
+    targetComponentSelector,
+  );
+
+  console.log(targetComponent);
 
   return (
     <Box
@@ -18,10 +35,23 @@ export const ComponentEditor = () => {
         display: "flex",
       }}
     >
-      <Typography variant="subtitle2" sx={{ fontSize: "1.25rem" }}>
-        Drag component to start design your page without programming ! Or load
-        your previous designed page.
-      </Typography>
+      {targetComponent ? (
+        Object.keys(targetComponent.components).map((key: string) => (
+          <Creator
+            key={key}
+            componentType={
+              targetComponent?.components[key]?.commonComponentType
+            }
+            component={targetComponent?.components[key]}
+            isWrapped={false}
+          />
+        ))
+      ) : (
+        <Typography variant="subtitle2" sx={{ fontSize: "1.25rem" }}>
+          Drag component to start design your page without programming ! Or load
+          your previous designed page.
+        </Typography>
+      )}
     </Box>
   );
 };
