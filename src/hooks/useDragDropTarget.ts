@@ -1,8 +1,12 @@
 import { DropTargetMonitor, useDrop } from "react-dnd";
 
 // recoil
-import { useSetRecoilState } from "recoil";
-import { targetComponent } from "@/core/componeents/target";
+import { useRecoilValue, useSetRecoilState } from "recoil";
+import {
+  targetComponent,
+  placedTargetComponent,
+} from "@/core/componeents/target";
+import { placedTargetComponentSelector } from "@/core/componeents/selectors/target";
 
 // core
 import { agentBuilder } from "@/core/builder/agent";
@@ -12,6 +16,7 @@ import type { CommonComponentType, Components } from "@/types/component";
 
 // utils
 import { components } from "@/utils/components";
+import { Nullable } from "@/types/common";
 
 interface DropComponentItem {
   type: string;
@@ -29,6 +34,11 @@ export const useDragDropTarget = (
   accept: CommonComponentType[] = components,
 ) => {
   const setTargetComponent = useSetRecoilState(targetComponent);
+  const setPlacedTargetComponent = useSetRecoilState(placedTargetComponent);
+
+  const currentPlacedTargetComponent: Nullable<Components> = useRecoilValue(
+    placedTargetComponentSelector,
+  );
 
   const [{ isOver }, drop] = useDrop({
     accept: accept,
@@ -53,6 +63,11 @@ export const useDragDropTarget = (
       setTargetComponent({
         selectedComponentUid: cUid,
         components: componentObject,
+      });
+
+      setPlacedTargetComponent({
+        ...currentPlacedTargetComponent,
+        ...componentObject,
       });
     },
     canDrop: () => isPossible,
