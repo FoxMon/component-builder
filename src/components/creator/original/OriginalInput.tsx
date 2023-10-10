@@ -4,10 +4,16 @@ import { Box, TextField } from "@mui/material";
 import type { Props } from "@/types/component";
 
 interface InputProps extends Props {
+  label: string;
   inputSize: "small" | "medium";
 }
 
-export const OriginalInput = ({ inputSize, size, spacing }: InputProps) => {
+export const OriginalInput = ({
+  label,
+  inputSize,
+  size,
+  spacing,
+}: InputProps) => {
   const { width, height } = size;
   const { marginTop, marginRight, marginBottom, marginLeft } = spacing;
 
@@ -22,11 +28,7 @@ export const OriginalInput = ({ inputSize, size, spacing }: InputProps) => {
         ml: marginLeft,
       }}
     >
-      <TextField
-        size={inputSize}
-        fullWidth={true}
-        label="Please input your text"
-      />
+      <TextField label={label} size={inputSize} fullWidth={true} />
     </Box>
   );
 };

@@ -59,8 +59,8 @@ export interface Children {
  */
 export interface Props {
   size: {
-    width: number;
-    height: number;
+    width: number | string;
+    height: number | string;
   };
   spacing: {
     marginLeft: number;
