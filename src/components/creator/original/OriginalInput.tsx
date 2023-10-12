@@ -1,8 +1,7 @@
 import { Box, TextField } from "@mui/material";
 
-// recoil
-import { useSetRecoilState } from "recoil";
-import { activeTarget } from "@/core/componeents/activeTarget";
+// project
+import { useActiveTarget } from "@/hooks/useActiveTarget";
 
 // type
 import type { ComponentBase, Props } from "@/types/component";
@@ -23,15 +22,7 @@ export const OriginalInput = ({
   const { width, height } = size;
   const { marginTop, marginRight, marginBottom, marginLeft } = spacing;
 
-  const setActiveComponent = useSetRecoilState(activeTarget);
-
-  const handleOriginalInputClick = () => {
-    setActiveComponent({
-      cUid: component.uid,
-      isActive: true,
-      isSelected: true,
-    });
-  };
+  const { handleOriginalComponentClick } = useActiveTarget(component.uid);
 
   return (
     <Box
@@ -43,7 +34,7 @@ export const OriginalInput = ({
         mb: marginBottom,
         ml: marginLeft,
       }}
-      onClick={handleOriginalInputClick}
+      onClick={handleOriginalComponentClick}
     >
       <TextField label={label} size={inputSize} fullWidth={true} />
     </Box>
