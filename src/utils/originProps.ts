@@ -39,6 +39,20 @@ interface OriginProps {
       marginLeft: number;
     };
   };
+  Button: {
+    label: string;
+    variant: "outlined" | "contained";
+    size: {
+      width: string;
+      height: string;
+    };
+    spacing: {
+      marginTop: number;
+      marginRight: number;
+      marginBottom: number;
+      marginLeft: number;
+    };
+  };
 }
 
 export const originProps: OriginProps = {
@@ -68,6 +82,20 @@ export const originProps: OriginProps = {
   Input: {
     label: "Please enter your text !",
     inputSize: "medium",
+    size: {
+      width: "100%",
+      height: "100%",
+    },
+    spacing: {
+      marginTop: 0,
+      marginRight: 0,
+      marginBottom: 0,
+      marginLeft: 0,
+    },
+  },
+  Button: {
+    label: "I'm button",
+    variant: "outlined",
     size: {
       width: "100%",
       height: "100%",

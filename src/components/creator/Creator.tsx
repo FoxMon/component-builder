@@ -11,6 +11,7 @@ import { originProps } from "@/utils/originProps";
 // type
 import type { ComponentBase } from "@/types/component";
 import type { Nullable } from "@/types/common";
+import { OriginalButton } from "./original/OriginalButton";
 
 /**
  * Component Creator의 props type 정의
@@ -53,6 +54,18 @@ export const Creator = ({
             inputSize={originProps["Input"]?.inputSize}
             size={originProps["Input"].size}
             spacing={originProps["Input"].spacing}
+          />
+        );
+      }
+
+      case "OriginalButton": {
+        return (
+          <OriginalButton
+            component={component}
+            variant={originProps["Button"].variant}
+            label={originProps["Button"].label}
+            size={originProps["Button"].size}
+            spacing={originProps["Button"].spacing}
           />
         );
       }

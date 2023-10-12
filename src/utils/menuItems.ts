@@ -42,4 +42,5 @@ export const menuItems: MenuItems = {
       Input: {},
     },
   },
+  Button: {},
 };

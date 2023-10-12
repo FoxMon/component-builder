@@ -114,10 +114,31 @@ class Agent extends Symbol {
 
     return generatedInputComponent;
   }
+
+  public static generateButton(parent: string): BuiltComponent {
+    const builder: Builder = new Builder("Button");
+
+    const generatedButtonId: string = builder.addChildNode(
+      "Button",
+      parent,
+      null,
+    );
+
+    const components: Components = builder.getComponents();
+
+    const generatedButtonComponent: BuiltComponent = {
+      root: generatedButtonId,
+      parent: parent,
+      components: components,
+    };
+
+    return generatedButtonComponent;
+  }
 }
 
 export const agentBuilder: AgentGeneratorFunction = {
   Form: Agent.generateFormGroup,
   Box: Agent.generateBox,
   Input: Agent.generateInput,
+  Button: Agent.generateButton,
 };

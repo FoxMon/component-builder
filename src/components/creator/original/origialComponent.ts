@@ -12,4 +12,5 @@ export const OriginalComponent: OriginalComponents = {
   Input: "OriginalInput",
   Box: "OriginalBox",
   Form: "OriginalForm",
+  Button: "OriginalButton",
 };

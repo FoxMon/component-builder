@@ -8,7 +8,12 @@ import type { Nullable } from "@/types/common";
 /**
  * 현재 갖고 있는 Component들의 집합
  */
-export const components: CommonComponentType[] = ["Box", "Form", "Input"];
+export const components: CommonComponentType[] = [
+  "Box",
+  "Form",
+  "Input",
+  "Button",
+];
 
 /**
  * Creator로 build할 수 있는 component인지 유효성 검사
