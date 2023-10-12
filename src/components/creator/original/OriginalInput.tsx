@@ -3,6 +3,9 @@ import { Box, TextField } from "@mui/material";
 // project
 import { useActiveTarget } from "@/hooks/useActiveTarget";
 
+// util
+import { colors } from "@/utils/colors";
+
 // type
 import type { ComponentBase, Props } from "@/types/component";
 
@@ -22,7 +25,8 @@ export const OriginalInput = ({
   const { width, height } = size;
   const { marginTop, marginRight, marginBottom, marginLeft } = spacing;
 
-  const { handleOriginalComponentClick } = useActiveTarget(component.uid);
+  const { activeComponentTarget, handleOriginalComponentClick } =
+    useActiveTarget(component.uid);
 
   return (
     <Box
@@ -33,6 +37,10 @@ export const OriginalInput = ({
         mr: marginRight,
         mb: marginBottom,
         ml: marginLeft,
+        border:
+          activeComponentTarget.cUid === component.uid
+            ? `3px dashed ${colors.green500}`
+            : "none",
       }}
       onClick={handleOriginalComponentClick}
     >

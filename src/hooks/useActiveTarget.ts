@@ -1,12 +1,13 @@
 // recoil
-import { useSetRecoilState } from "recoil";
+import { useRecoilState } from "recoil";
 import { activeTarget } from "@/core/componeents/activeTarget";
 
 export const useActiveTarget = (componentUid: string) => {
-  const setActiveTarget = useSetRecoilState(activeTarget);
+  const [activeComponentTarget, setActiveComponentTarget] =
+    useRecoilState(activeTarget);
 
   const handleOriginalComponentClick = () => {
-    setActiveTarget({
+    setActiveComponentTarget({
       cUid: componentUid,
       isActive: true,
       isSelected: true,
@@ -14,6 +15,7 @@ export const useActiveTarget = (componentUid: string) => {
   };
 
   return {
+    activeComponentTarget,
     handleOriginalComponentClick,
   };
 };

@@ -27,7 +27,7 @@ export const ComponentEditor = () => {
       sx={{
         p: 2,
         position: "relative",
-        height: "100%",
+        height: "auto",
         minHeight: "100vh",
         width: "100%",
         display: "flex",
