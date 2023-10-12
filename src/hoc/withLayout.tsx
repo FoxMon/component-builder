@@ -4,6 +4,7 @@ import { HTML5Backend } from "react-dnd-html5-backend";
 import { styled, Box, AppBar, Toolbar, CssBaseline } from "@mui/material";
 
 // project
+import { CreatorErrorBoundary } from "@/components/errorBoundaries/CreatorErrorBoundary";
 import { Header } from "@/components/header/Header";
 import { Sidebar } from "@/components/sidebar/Sidebar";
 import { Observer } from "@/components/observer/Observer";
@@ -17,32 +18,38 @@ const Content = styled("main")(() => ({
 
 export const WithLayout = (Component: ComponentType) => {
   const WrappedComponent = () => {
+    const handleResetButtonClick = () => {
+      window.location.reload();
+    };
+
     return (
-      <Box>
-        <CssBaseline />
-        <AppBar
-          position="static"
-          color="inherit"
-          elevation={0}
-          sx={{
-            bgcolor: "#1a202c",
-            height: "60px",
-          }}
-        >
-          <Toolbar>
-            <Header />
-          </Toolbar>
-        </AppBar>
-        <DndProvider backend={HTML5Backend}>
-          <Box sx={{ display: "flex" }}>
-            <Sidebar />
-            <Content>
-              <Component />
-            </Content>
-            <Observer />
-          </Box>
-        </DndProvider>
-      </Box>
+      <CreatorErrorBoundary reset={handleResetButtonClick}>
+        <Box>
+          <CssBaseline />
+          <AppBar
+            position="static"
+            color="inherit"
+            elevation={0}
+            sx={{
+              bgcolor: "#1a202c",
+              height: "60px",
+            }}
+          >
+            <Toolbar>
+              <Header />
+            </Toolbar>
+          </AppBar>
+          <DndProvider backend={HTML5Backend}>
+            <Box sx={{ display: "flex" }}>
+              <Sidebar />
+              <Content>
+                <Component />
+              </Content>
+              <Observer />
+            </Box>
+          </DndProvider>
+        </Box>
+      </CreatorErrorBoundary>
     );
   };
 
