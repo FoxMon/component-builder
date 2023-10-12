@@ -8,6 +8,11 @@ import { ReactNode } from "react";
 export type CommonComponentType = "Box" | "Form" | "Input";
 
 /**
+ * Type alias 형식의 React Node
+ */
+export type ChildrenAlias = ReactNode;
+
+/**
  * Component Builder는 자신의 자식과 부모를 식별할 수 있어야 한다.
  */
 export interface ComponentBase {

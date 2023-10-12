@@ -2,7 +2,7 @@
 import { colors } from "./colors";
 
 interface OriginProps {
-  Box?: {
+  Box: {
     variant: "flex" | "grid" | "block";
     size: {
       width: string | number;
