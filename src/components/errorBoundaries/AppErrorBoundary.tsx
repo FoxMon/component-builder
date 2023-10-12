@@ -1,6 +1,10 @@
 import { Component } from "react";
 import { Box, Stack, Typography, Button } from "@mui/material";
+
+// util
 import { logging } from "@/utils/logger";
+
+// type
 import type { Children } from "@/types/component";
 
 interface AppErrorBoundaryState {
