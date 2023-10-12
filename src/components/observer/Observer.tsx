@@ -1,3 +1,4 @@
+import { useMemo } from "react";
 import {
   Box,
   Typography,
@@ -9,12 +10,30 @@ import {
   TextField,
 } from "@mui/material";
 
+// recoil
+import { useRecoilValue } from "recoil";
+import { activeTarget } from "@/core/componeents/activeTarget";
+import { activeTargetSelector } from "@/core/componeents/selectors/activeTarget";
+
 // assets
 import RestartAltIcon from "@mui/icons-material/RestartAlt";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 export const Observer = () => {
+  const selectedTargetComponent = useRecoilValue(activeTarget);
+  const activeComponentTarget = useRecoilValue(
+    activeTargetSelector(selectedTargetComponent.cUid),
+  );
+
+  const componentName: string = useMemo(
+    () =>
+      activeComponentTarget?.commonComponentType
+        ? activeComponentTarget.commonComponentType
+        : "COMPONENT NAME",
+    [activeComponentTarget?.commonComponentType],
+  );
+
   return (
     <Box sx={{ background: "white", borderLeft: "1px solid #E2E8F0" }}>
       <Box
@@ -32,7 +51,7 @@ export const Observer = () => {
           variant="subtitle1"
           sx={{ color: "#FFFFFFEF", fontWeight: "bold" }}
         >
-          COMPONENT NAME
+          {componentName}
         </Typography>
       </Box>
       <Stack
