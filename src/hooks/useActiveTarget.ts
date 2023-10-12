@@ -1,25 +1,19 @@
-import { MouseEvent } from "react";
-
 // recoil
 import { useSetRecoilState } from "recoil";
 import { activeTarget } from "@/core/componeents/activeTarget";
 
-export const useActiveTarget = () => {
+export const useActiveTarget = (componentUid: string) => {
   const setActiveTarget = useSetRecoilState(activeTarget);
 
-  const activeComponentProps = {
-    onClick: (e: MouseEvent, componentUid: string) => {
-      e.stopPropagation();
-
-      setActiveTarget({
-        cUid: componentUid,
-        isActive: true,
-        isSelected: true,
-      });
-    },
+  const handleOriginalComponentClick = () => {
+    setActiveTarget({
+      cUid: componentUid,
+      isActive: true,
+      isSelected: true,
+    });
   };
 
   return {
-    activeComponentProps,
+    handleOriginalComponentClick,
   };
 };
