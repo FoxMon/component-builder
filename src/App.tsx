@@ -3,6 +3,7 @@ import { CssBaseline, StyledEngineProvider } from "@mui/material";
 
 // project
 import { AppErrorBoundary } from "./components/errorBoundaries/AppErrorBoundary";
+import { EditorContext } from "@/components/contexts/editorContext";
 import { MainRouter } from "@/routes/MainRouter";
 
 function App() {
@@ -11,7 +12,9 @@ function App() {
       <StyledEngineProvider injectFirst>
         <CssBaseline />
         <AppErrorBoundary>
-          <MainRouter />
+          <EditorContext>
+            <MainRouter />
+          </EditorContext>
         </AppErrorBoundary>
       </StyledEngineProvider>
     </RecoilRoot>
