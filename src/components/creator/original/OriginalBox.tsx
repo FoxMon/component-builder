@@ -30,7 +30,7 @@ export const OriginalBox = ({ component, children }: BoxProps) => {
           ? `3px dashed ${colors.green500}`
           : boxBorder,
     };
-  }, [activeComponentTarget]);
+  }, [activeComponentTarget.cUid, component.uid]);
 
   return (
     <Box
