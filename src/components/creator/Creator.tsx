@@ -40,9 +40,6 @@ export const Creator = ({
   // Component를 만들기 전에 유효성을 검사한다.
   checkComponent(componentType);
 
-  // TODO: Props 추가 => component 사용
-  const componentProps = {};
-
   const originalComponentName: Nullable<string> =
     OriginalComponent[componentType];
 
@@ -51,6 +48,7 @@ export const Creator = ({
       case "OriginalInput": {
         return (
           <OriginalInput
+            component={component}
             label={originProps["Input"].label}
             inputSize={originProps["Input"]?.inputSize}
             size={originProps["Input"].size}
