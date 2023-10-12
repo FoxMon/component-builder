@@ -33,21 +33,24 @@ export const ComponentEditor = () => {
         display: "flex",
       }}
     >
-      {placedComponent ? (
-        Object.keys(placedComponent).map((key: string) => (
-          <Creator
-            key={key}
-            componentType={placedComponent[key]?.commonComponentType}
-            component={placedComponent[key]}
-            isWrapped={false}
-          />
-        ))
-      ) : (
-        <Typography variant="subtitle2" sx={{ fontSize: "1.25rem" }}>
-          Drag component to start design your page without programming ! Or load
-          your previous designed page.
-        </Typography>
-      )}
+      <Box sx={{ m: "0 auto" }}>
+        {placedComponent ? (
+          Object.keys(placedComponent).map((key: string) => (
+            <Box key={key}>
+              <Creator
+                componentType={placedComponent[key]?.commonComponentType}
+                component={placedComponent[key]}
+                isWrapped={false}
+              />
+            </Box>
+          ))
+        ) : (
+          <Typography variant="subtitle2" sx={{ fontSize: "1.25rem" }}>
+            Drag component to start design your page without programming ! Or
+            load your previous designed page.
+          </Typography>
+        )}
+      </Box>
     </Box>
   );
 };
