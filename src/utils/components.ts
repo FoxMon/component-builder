@@ -10,9 +10,16 @@ import type { Nullable } from "@/types/common";
  */
 export const components: CommonComponentType[] = [
   "Box",
+  "Flex",
+  "Grid",
+  "Stack",
   "Form",
   "Input",
+  "CheckBox",
+  "Select",
   "Button",
+  "Typography",
+  "Spinner",
 ];
 
 /**

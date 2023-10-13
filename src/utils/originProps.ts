@@ -60,7 +60,7 @@ export const originProps: OriginProps = {
     variant: "block",
     size: {
       width: "100%",
-      height: "100%",
+      height: "2rem",
     },
     spacing: {
       marginTop: 0,
@@ -74,9 +74,9 @@ export const originProps: OriginProps = {
     },
     border: {
       radius: 0,
-      line: 1,
+      line: 2,
       lineStyle: "dotted",
-      color: colors.black900,
+      color: colors.red700,
     },
   },
   Input: {

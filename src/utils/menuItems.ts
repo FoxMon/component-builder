@@ -37,10 +37,17 @@ interface MenuItems {
 
 export const menuItems: MenuItems = {
   Box: {},
+  Flex: {},
+  Grid: {},
+  Stack: {},
   Form: {
     children: {
       Input: {},
+      CheckBox: {},
+      Select: {},
     },
   },
   Button: {},
+  Typography: {},
+  Spinner: {},
 };
