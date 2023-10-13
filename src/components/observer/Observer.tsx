@@ -40,7 +40,7 @@ export const Observer = () => {
         sx={{
           py: 1.2,
           px: 2,
-          width: 220,
+          width: "100%",
           display: "flex",
           background: "#FFA630",
           flexDirection: "column",
