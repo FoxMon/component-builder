@@ -81,15 +81,16 @@ export const OriginalBox = ({
         border: boxProps.border,
         background: boxProps.background,
         width: width,
-        height: height,
+        height: component.children.length > 0 ? "auto" : height,
         mt: marginTop,
         mr: marginRight,
         mb: marginBottom,
         ml: marginLeft,
-        pt: paddingTop,
-        pr: paddingRight,
-        pb: paddingBottom,
-        pl: paddingLeft,
+        pt: component.children.length > 0 ? 1 : paddingTop,
+        pr: component.children.length > 0 ? 1 : paddingRight,
+        pb: component.children.length > 0 ? 1 : paddingBottom,
+        pl: component.children.length > 0 ? 1 : paddingLeft,
+        cursor: "pointer",
       }}
       onClick={handleOriginalComponentClick}
     >

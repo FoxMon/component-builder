@@ -1,7 +1,9 @@
 import { Box, Button } from "@mui/material";
 
-// project
+// hook
 import { useActiveTarget } from "@/hooks/useActiveTarget";
+import { useDragDropTarget } from "@/hooks/useDragDropTarget";
+import { useDragTarget } from "@/hooks/useDragTarget";
 
 // util
 import { colors } from "@/utils/colors";
@@ -22,14 +24,20 @@ export const OriginalButton = ({
   size,
   spacing,
 }: ButtonProps) => {
-  const { width, height } = size;
-  const { marginTop, marginRight, marginBottom, marginLeft } = spacing;
-
   const { activeComponentTarget, handleOriginalComponentClick } =
     useActiveTarget(component.uid);
 
+  const { drop } = useDragDropTarget(component.uid);
+  const { ref } = useDragTarget(component);
+
+  const { width, height } = size;
+  const { marginTop, marginRight, marginBottom, marginLeft } = spacing;
+
   return (
     <Box
+      // 영문을 모르겠는 Type 에러
+      // @ts-ignore
+      ref={drop(ref)}
       sx={{
         width: width,
         height: height,
