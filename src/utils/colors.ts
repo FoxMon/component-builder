@@ -11,6 +11,9 @@ interface Colors {
   // black
   black900: string;
 
+  // gray
+  gray500: string;
+
   // white
   white900: string;
 }
@@ -27,6 +30,9 @@ export const colors: Colors = {
 
   // black
   black900: "#000000",
+
+  // gray
+  gray500: "#D3D3D3",
 
   // white
   white900: "#FFFFFF",
