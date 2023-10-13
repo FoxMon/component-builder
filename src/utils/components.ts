@@ -40,3 +40,20 @@ export const checkComponent = (componentType: string): boolean => {
 
   return true;
 };
+
+/**
+ * 최상위 루트의 parent는 자기 자신의 ComponentType으로 초기화가 될 것이므로
+ * 만약에 최상위 루트의 자식으로 들어간 경우에는 parent는 부모 Component의 ID를 가지고 있을 것이다.
+ *
+ * 따라서 최상위 루트 Component를 구분하기 위해서는 자기 자신의 ComponentType인 것들만 가능하다.
+ *
+ * @param {string} componentType
+ * @returns {boolean}
+ */
+export const filterComponent = (componentType: string): boolean => {
+  const isRootComponent: boolean = (components as string[]).includes(
+    componentType,
+  );
+
+  return isRootComponent;
+};
