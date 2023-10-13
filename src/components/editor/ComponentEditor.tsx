@@ -10,6 +10,9 @@ import { useDragDropTarget } from "@/hooks/useDragDropTarget";
 import { useRecoilValue } from "recoil";
 import { placedTargetComponentSelector } from "@/core/componeents/selectors/target";
 
+// util
+import { filterComponent } from "@/utils/components";
+
 // type
 import type { Nullable } from "@/types/common";
 import type { Components } from "@/types/component";
@@ -35,15 +38,17 @@ export const ComponentEditor = () => {
     >
       <Box sx={{ m: "0 auto", width: "100%" }}>
         {placedComponent ? (
-          Object.keys(placedComponent).map((key: string) => (
-            <Box key={key}>
-              <Creator
-                componentType={placedComponent[key]?.commonComponentType}
-                component={placedComponent[key]}
-                isWrapped={false}
-              />
-            </Box>
-          ))
+          Object.keys(placedComponent)
+            .filter((id: string) => filterComponent(placedComponent[id].parent))
+            .map((key: string) => (
+              <Box key={key}>
+                <Creator
+                  componentType={placedComponent[key]?.commonComponentType}
+                  component={placedComponent[key]}
+                  isWrapped={false}
+                />
+              </Box>
+            ))
         ) : (
           <Typography variant="subtitle2" sx={{ fontSize: "1.25rem" }}>
             Drag component to start design your page without programming ! Or
