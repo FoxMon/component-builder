@@ -1,8 +1,10 @@
 import { useMemo } from "react";
 import { Box } from "@mui/material";
 
-// project
+// hook
 import { useActiveTarget } from "@/hooks/useActiveTarget";
+import { useDragDropTarget } from "@/hooks/useDragDropTarget";
+import { useDragTarget } from "@/hooks/useDragTarget";
 
 // util
 import { originProps } from "@/utils/originProps";
@@ -42,6 +44,9 @@ export const OriginalBox = ({
   const { activeComponentTarget, handleOriginalComponentClick } =
     useActiveTarget(component.uid);
 
+  const { isOver, drop } = useDragDropTarget(component.uid);
+  const { ref } = useDragTarget(component);
+
   const { width, height } = size;
   const {
     marginTop,
@@ -63,13 +68,18 @@ export const OriginalBox = ({
         activeComponentTarget.cUid === component.uid
           ? `3px dashed ${colors.green500}`
           : boxBorder,
+      background: isOver ? colors.gray500 : "",
     };
-  }, [activeComponentTarget.cUid, component.uid]);
+  }, [activeComponentTarget.cUid, component.uid, isOver]);
 
   return (
     <Box
+      // 영문을 모르겠는 Type 에러
+      // @ts-ignore
+      ref={drop(ref)}
       sx={{
         border: boxProps.border,
+        background: boxProps.background,
         width: width,
         height: height,
         mt: marginTop,
