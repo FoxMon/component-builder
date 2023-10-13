@@ -20,6 +20,10 @@ export const Header = () => {
     EditorBackgroundStateContext,
   );
 
+  const handleGithubIconClick = () => {
+    window.open("https://github.com/FoxMon/component-builder");
+  };
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <Grid container spacing={3} sx={{ alignItems: "center" }}>
@@ -35,6 +39,7 @@ export const Header = () => {
               control={
                 <Checkbox
                   sx={{ color: "#B2F5EA" }}
+                  size="small"
                   onChange={updateBackgroundModeState}
                 />
               }
@@ -51,7 +56,18 @@ export const Header = () => {
             justifyContent: "flex-end",
           }}
         >
-          <GitHubIcon sx={{ cursor: "pointer", mr: 1 }} />
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              cursor: "pointer",
+              mr: 1,
+            }}
+            onClick={handleGithubIconClick}
+          >
+            <GitHubIcon />
+          </Box>
           <Typography variant="caption" sx={{ mr: 0.725 }}>
             by
           </Typography>

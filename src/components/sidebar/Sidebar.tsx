@@ -1,3 +1,4 @@
+import { ChangeEvent, useState, useMemo } from "react";
 import { Box, Input } from "@mui/material";
 
 // proejct
@@ -10,16 +11,37 @@ import { CommonComponentType } from "@/types/component";
 import { MenuItem, menuItems } from "@/utils/menuItems";
 
 export const Sidebar = () => {
+  const [searchComponent, setSearchComponent] = useState<string[]>([]);
+
+  const menus: CommonComponentType[] = useMemo(() => {
+    return searchComponent.length > 0
+      ? (searchComponent as CommonComponentType[])
+      : (Object.keys(menuItems) as CommonComponentType[]);
+  }, [searchComponent]);
+
+  const handleSearchComponentChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const searchText = e.target.value;
+
+    const components: CommonComponentType[] = Object.keys(
+      menuItems,
+    ) as CommonComponentType[];
+    const searchResults: string[] = components.filter((comp: string) =>
+      comp.includes(searchText),
+    );
+
+    setSearchComponent(searchResults);
+  };
+
   return (
     <Box
       sx={{
         minHeight: "100vh",
         overflowY: "auto",
-        flex: "0 0 14rem",
+        flex: "0 0 13rem",
         m: 0,
         p: 0,
         background: "#2e3748",
-        width: "12rem",
+        width: "100%",
       }}
     >
       <Box
@@ -45,47 +67,46 @@ export const Sidebar = () => {
               borderColor: "rgba(225, 225, 225, 0.08)",
             },
           }}
+          onChange={handleSearchComponentChange}
         />
       </Box>
       <Box sx={{ p: 4, pt: 0 }}>
-        {(Object.keys(menuItems) as CommonComponentType[]).map(
-          (name: string, idx: number) => {
-            const { children } = menuItems[name] as MenuItem;
+        {menus.map((name: string, idx: number) => {
+          const { children } = menuItems[name] as MenuItem;
 
-            if (children) {
-              const elem = Object.keys(children).map((chName: string) => (
-                <SidebarItem
-                  key={chName}
-                  name={chName}
-                  componentType={chName}
-                  rootComponentType={menuItems[name]?.rootComponentType || name}
-                  isChildComponent={true}
-                />
-              ));
-
-              return [
-                <SidebarItem
-                  key={name}
-                  name={name}
-                  componentType={name}
-                  rootComponentType={menuItems[name]?.rootComponentType || name}
-                  isChildComponent={false}
-                />,
-                ...elem,
-              ];
-            }
-
-            return (
+          if (children) {
+            const elem = Object.keys(children).map((chName: string) => (
               <SidebarItem
-                key={`${name}:${idx}`}
+                key={chName}
+                name={chName}
+                componentType={chName}
+                rootComponentType={menuItems[name]?.rootComponentType || name}
+                isChildComponent={true}
+              />
+            ));
+
+            return [
+              <SidebarItem
+                key={name}
                 name={name}
                 componentType={name}
                 rootComponentType={menuItems[name]?.rootComponentType || name}
                 isChildComponent={false}
-              />
-            );
-          },
-        )}
+              />,
+              ...elem,
+            ];
+          }
+
+          return (
+            <SidebarItem
+              key={`${name}:${idx}`}
+              name={name}
+              componentType={name}
+              rootComponentType={menuItems[name]?.rootComponentType || name}
+              isChildComponent={false}
+            />
+          );
+        })}
       </Box>
     </Box>
   );

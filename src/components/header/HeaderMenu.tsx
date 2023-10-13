@@ -3,6 +3,7 @@ import { Box, Button, Menu, MenuItem, Typography } from "@mui/material";
 
 // assets
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import SaveIcon from "@mui/icons-material/Save";
 
 export const HeaderMenu = () => {
   const [menuAnchorElement, setMenuAnchorElement] =
@@ -29,14 +30,12 @@ export const HeaderMenu = () => {
         open={isMenuOpen}
         onClose={handleMenuClose}
       >
-        <MenuItem onClick={handleMenuClose}>
-          <Typography variant="subtitle2">Save Page</Typography>
-        </MenuItem>
-        <MenuItem onClick={handleMenuClose}>
-          <Typography variant="subtitle2">Save Page</Typography>
-        </MenuItem>
-        <MenuItem onClick={handleMenuClose}>
-          <Typography variant="subtitle2">Save Page</Typography>
+        <MenuItem
+          sx={{ display: "flex", alignItems: "center", gap: 1 }}
+          onClick={handleMenuClose}
+        >
+          <SaveIcon />
+          <Typography variant="subtitle2">Save page with components</Typography>
         </MenuItem>
       </Menu>
     </Box>

@@ -31,7 +31,7 @@ export const SidebarItem = ({
         boxSizing: "border-box",
         transition: "margin 200ms",
         my: 1,
-        ml: isChildComponent ? 4 : 0,
+        ml: isChildComponent ? 2.5 : 0,
         borderRadius: "8px",
         p: 1,
         display: "flex",
