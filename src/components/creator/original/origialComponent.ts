@@ -9,8 +9,15 @@ interface OriginalComponents {
  * Original component mapper
  */
 export const OriginalComponent: OriginalComponents = {
-  Input: "OriginalInput",
   Box: "OriginalBox",
+  Flex: "OriginalFlex",
+  Grid: "OriginalGrid",
+  Stack: "OriginalStack",
   Form: "OriginalForm",
+  Input: "OriginalInput",
+  CheckBox: "OriginalCheckBox",
+  Select: "OriginalSelect",
   Button: "OriginalButton",
+  Typography: "OriginalTypography",
+  Spinner: "OriginalSpinner",
 };

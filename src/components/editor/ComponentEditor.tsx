@@ -33,7 +33,7 @@ export const ComponentEditor = () => {
         display: "flex",
       }}
     >
-      <Box sx={{ m: "0 auto" }}>
+      <Box sx={{ m: "0 auto", width: "100%" }}>
         {placedComponent ? (
           Object.keys(placedComponent).map((key: string) => (
             <Box key={key}>
