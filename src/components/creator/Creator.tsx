@@ -3,6 +3,8 @@ import { Box } from "@mui/material";
 // project
 import { OriginalComponent } from "./original/origialComponent";
 import { OriginalInput } from "./original/OriginalInput";
+import { OriginalButton } from "./original/OriginalButton";
+import { OriginalBox } from "./original/OriginalBox";
 
 // util
 import { checkComponent } from "@/utils/components";
@@ -11,7 +13,7 @@ import { originProps } from "@/utils/originProps";
 // type
 import type { ComponentBase } from "@/types/component";
 import type { Nullable } from "@/types/common";
-import { OriginalButton } from "./original/OriginalButton";
+import { ChildrenOriginalComponent } from "./ChildrenOriginalComponent";
 
 /**
  * Component Creator의 props type 정의
@@ -67,6 +69,18 @@ export const Creator = ({
             size={originProps["Button"].size}
             spacing={originProps["Button"].spacing}
           />
+        );
+      }
+
+      case "OriginalBox": {
+        return (
+          <OriginalBox
+            component={component}
+            size={originProps["Box"].size}
+            spacing={originProps["Box"].spacing}
+          >
+            <ChildrenOriginalComponent component={component} />
+          </OriginalBox>
         );
       }
 
