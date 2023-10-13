@@ -5,7 +5,18 @@ import { ReactNode } from "react";
  *
  * [Input, Grid, etc ...]
  */
-export type CommonComponentType = "Box" | "Form" | "Input" | "Button";
+export type CommonComponentType =
+  | "Box"
+  | "Flex"
+  | "Grid"
+  | "Stack"
+  | "Form"
+  | "Input"
+  | "CheckBox"
+  | "Select"
+  | "Button"
+  | "Typography"
+  | "Spinner";
 
 /**
  * Type alias 형식의 React Node
