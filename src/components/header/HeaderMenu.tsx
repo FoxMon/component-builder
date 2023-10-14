@@ -1,9 +1,17 @@
 import { useState, MouseEvent } from "react";
-import { Box, Button, Menu, MenuItem, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  Menu,
+  MenuItem,
+  Typography,
+  Divider,
+} from "@mui/material";
 
 // assets
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import SaveIcon from "@mui/icons-material/Save";
+import ClearAllIcon from "@mui/icons-material/ClearAll";
 
 export const HeaderMenu = () => {
   const [menuAnchorElement, setMenuAnchorElement] =
@@ -36,6 +44,11 @@ export const HeaderMenu = () => {
         >
           <SaveIcon />
           <Typography variant="subtitle2">Save page with components</Typography>
+        </MenuItem>
+        <Divider />
+        <MenuItem sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+          <ClearAllIcon />
+          <Typography variant="subtitle2">Clear all components</Typography>
         </MenuItem>
       </Menu>
     </Box>
