@@ -52,6 +52,8 @@ export interface ComponentBase {
    * 최상위의 부모의 Component가 무엇인지 알 수 있어야 한다.
    */
   rootCommonComponentType: CommonComponentType;
+
+  props?: Props;
 }
 
 /**
