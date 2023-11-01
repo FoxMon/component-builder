@@ -53,7 +53,7 @@ export interface ComponentBase {
    */
   rootCommonComponentType: CommonComponentType;
 
-  props?: Props;
+  props?: any;
 }
 
 /**
@@ -69,21 +69,4 @@ export interface Components {
  */
 export interface Children {
   children: ReactNode;
-}
-
-/**
- * Component의 공통 props type 정의
- * [Size, Spacing, Layout]
- */
-export interface Props {
-  size: {
-    width: number | string;
-    height: number | string;
-  };
-  spacing: {
-    marginLeft: number;
-    marginTop: number;
-    marginRight: number;
-    marginBottom: number;
-  };
 }
