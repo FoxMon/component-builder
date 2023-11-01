@@ -14,20 +14,7 @@ import { colors } from "@/utils/colors";
 import { ComponentBase, ChildrenAlias } from "@/types/component";
 
 interface BoxOriginProps {
-  size: {
-    width: string | number;
-    height: string | number;
-  };
-  spacing: {
-    marginTop: number;
-    marginRight: number;
-    marginBottom: number;
-    marginLeft: number;
-    paddingTop: number;
-    paddingRight: number;
-    paddingBottom: number;
-    paddingLeft: number;
-  };
+  props: any;
 }
 
 interface BoxProps extends BoxOriginProps {
@@ -35,19 +22,14 @@ interface BoxProps extends BoxOriginProps {
   children: ChildrenAlias;
 }
 
-export const OriginalBox = ({
-  component,
-  size,
-  spacing,
-  children,
-}: BoxProps) => {
+export const OriginalBox = ({ component, props, children }: BoxProps) => {
   const { activeComponentTarget, handleOriginalComponentClick } =
-    useActiveTarget(component.uid);
+    useActiveTarget(component.uid, props);
 
   const { isOver, drop } = useDragDropTarget(component.uid);
   const { ref } = useDragTarget(component);
 
-  const { width, height } = size;
+  const { width, height } = props.size;
   const {
     marginTop,
     marginRight,
@@ -57,7 +39,7 @@ export const OriginalBox = ({
     paddingRight,
     paddingBottom,
     paddingLeft,
-  } = spacing;
+  } = props.spacing;
 
   const boxProps = useMemo(() => {
     const { line, lineStyle, color } = originProps.Box.border;

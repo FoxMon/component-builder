@@ -9,29 +9,29 @@ import { useDragTarget } from "@/hooks/useDragTarget";
 import { colors } from "@/utils/colors";
 
 // type
-import type { ComponentBase, Props } from "@/types/component";
+import type { ComponentBase } from "@/types/component";
 
-interface InputProps extends Props {
+interface InputProps {
   component: ComponentBase;
   label: string;
   inputSize: "small" | "medium";
+  props: any;
 }
 
 export const OriginalInput = ({
   component,
   label,
   inputSize,
-  size,
-  spacing,
+  props,
 }: InputProps) => {
   const { activeComponentTarget, handleOriginalComponentClick } =
-    useActiveTarget(component.uid);
+    useActiveTarget(component.uid, props);
 
   const { drop } = useDragDropTarget(component.uid);
   const { ref } = useDragTarget(component);
 
-  const { width, height } = size;
-  const { marginTop, marginRight, marginBottom, marginLeft } = spacing;
+  const { width, height } = props.size;
+  const { marginTop, marginRight, marginBottom, marginLeft } = props.spacing;
 
   return (
     <Box
