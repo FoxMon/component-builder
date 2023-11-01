@@ -54,8 +54,7 @@ export const Creator = ({
             component={component}
             label={originProps["Input"].label}
             inputSize={originProps["Input"]?.inputSize}
-            size={originProps["Input"].size}
-            spacing={originProps["Input"].spacing}
+            props={originProps["Input"].props}
           />
         );
       }
@@ -66,19 +65,14 @@ export const Creator = ({
             component={component}
             variant={originProps["Button"].variant}
             label={originProps["Button"].label}
-            size={originProps["Button"].size}
-            spacing={originProps["Button"].spacing}
+            props={originProps["Button"].props}
           />
         );
       }
 
       case "OriginalBox": {
         return (
-          <OriginalBox
-            component={component}
-            size={originProps["Box"].size}
-            spacing={originProps["Box"].spacing}
-          >
+          <OriginalBox component={component} props={originProps["Box"].props}>
             <ChildrenOriginalComponent component={component} />
           </OriginalBox>
         );
