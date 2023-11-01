@@ -2,7 +2,7 @@
 import { useRecoilState } from "recoil";
 import { activeTarget } from "@/core/componeents/activeTarget";
 
-export const useActiveTarget = (componentUid: string) => {
+export const useActiveTarget = (componentUid: string, props: any) => {
   const [activeComponentTarget, setActiveComponentTarget] =
     useRecoilState(activeTarget);
 
@@ -11,6 +11,7 @@ export const useActiveTarget = (componentUid: string) => {
       cUid: componentUid,
       isActive: true,
       isSelected: true,
+      props: props,
     });
   };
 

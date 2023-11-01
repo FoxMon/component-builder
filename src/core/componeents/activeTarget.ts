@@ -4,6 +4,7 @@ interface ActiveTarget {
   cUid: string;
   isActive: boolean;
   isSelected: boolean;
+  props: any;
 }
 
 export const activeTarget = atom<ActiveTarget>({
@@ -12,5 +13,6 @@ export const activeTarget = atom<ActiveTarget>({
     cUid: "",
     isActive: false,
     isSelected: false,
+    props: {},
   },
 });
