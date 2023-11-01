@@ -73,75 +73,38 @@ export const Observer = () => {
       </Stack>
       <Divider />
       <Box>
-        <Accordion square disableGutters elevation={0}>
-          <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
-            sx={{ background: "#F7FAFC" }}
-          >
-            <Typography variant="subtitle2">Size</Typography>
-          </AccordionSummary>
-          <AccordionDetails
-            sx={{ display: "flex", alignItems: "center", gap: 1 }}
-          >
-            <Typography variant="caption" sx={{ fontWeight: "bold" }}>
-              Width
-            </Typography>
-            <TextField
-              size="small"
-              inputProps={{
-                style: {
-                  height: "18px",
-                },
-              }}
-            />
-          </AccordionDetails>
-        </Accordion>
-        <Accordion square disableGutters elevation={0}>
-          <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
-            sx={{ background: "#F7FAFC" }}
-          >
-            <Typography variant="subtitle2">Backgrounds</Typography>
-          </AccordionSummary>
-          <AccordionDetails
-            sx={{ display: "flex", alignItems: "center", gap: 1 }}
-          >
-            <Typography variant="caption" sx={{ fontWeight: "bold" }}>
-              Color
-            </Typography>
-            <TextField
-              size="small"
-              inputProps={{
-                style: {
-                  height: "18px",
-                },
-              }}
-            />
-          </AccordionDetails>
-        </Accordion>
-        <Accordion square disableGutters elevation={0}>
-          <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
-            sx={{ background: "#F7FAFC" }}
-          >
-            <Typography variant="subtitle2">Border</Typography>
-          </AccordionSummary>
-          <AccordionDetails
-            sx={{ display: "flex", alignItems: "center", gap: 1 }}
-          >
-            <Typography variant="caption" sx={{ fontWeight: "bold" }}>
-              Radius
-            </Typography>
-            <TextField
-              size="small"
-              inputProps={{
-                style: {
-                  height: "18px",
-                },
-              }}
-            />
-          </AccordionDetails>
-        </Accordion>
+        {selectedTargetComponent?.cUid &&
+          Object.keys(selectedTargetComponent.props).map((propName: string) => (
+            <Accordion square disableGutters elevation={0} key={propName}>
+              <AccordionSummary
+                expandIcon={<ExpandMoreIcon />}
+                sx={{ background: "#F7FAFC" }}
+              >
+                <Typography variant="subtitle2">{propName}</Typography>
+              </AccordionSummary>
+              <AccordionDetails
+                sx={{ display: "flex", flexDirection: "column", gap: 2 }}
+              >
+                {Object.keys(selectedTargetComponent.props[propName]).map(
+                  (compProps: string) => (
+                    <Box key={compProps}>
+                      <Typography variant="caption" sx={{ fontWeight: "bold" }}>
+                        {compProps}
+                      </Typography>
+                      <TextField
+                        size="small"
+                        inputProps={{
+                          style: {
+                            height: "18px",
+                          },
+                        }}
+                      />
+                    </Box>
+                  ),
+                )}
+              </AccordionDetails>
+            </Accordion>
+          ))}
       </Box>
       <Divider />
     </Box>
