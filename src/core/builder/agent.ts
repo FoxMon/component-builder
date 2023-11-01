@@ -24,20 +24,11 @@ interface BuiltComponent {
   components: Components;
 }
 
-type GeneratorFunction = Partial<CommonComponentType | string>;
-
-/**
- * Generator 함수의 Type 정의
- */
-interface AgentGeneratorFunction {
-  [name: GeneratorFunction]: (parent: string) => BuiltComponent;
-}
-
 /**
  * Builder class를 활용하여 실질적으로 Component를 만드는데 필요한
  * 데이터를 만들기 위해 사용하는 Agent Class 정의
  */
-class Agent extends Symbol {
+export class Agent extends Symbol {
   constructor() {
     super("Coponent:Builder:Agent");
 
@@ -45,100 +36,33 @@ class Agent extends Symbol {
   }
 
   /**
-   * Form group을 생성하는 Method
+   * 핵심 로직
+   * 모든 Component를 생성할 수 있도록 하는 Method
    *
    * @param {string} parent
+   * @param {CommonComponentType} type
    * @returns {BuiltComponent}
    */
-  public static generateFormGroup(parent: string): BuiltComponent {
-    const builder: Builder = new Builder("Form");
+  public static generateComponent(
+    parent: string,
+    type: CommonComponentType,
+  ): BuiltComponent {
+    const builder: Builder = new Builder(type);
 
-    const generatedFormId: string = builder.addChildNode("Form", parent, null);
-    builder.addChildNode("Input", generatedFormId, "Form");
-
-    const components: Components = builder.getComponents();
-
-    const generatedFormComponent: BuiltComponent = {
-      root: generatedFormId,
-      parent: parent,
-      components: components,
-    };
-
-    return generatedFormComponent;
-  }
-
-  /**
-   * Box를 생성하는 Method
-   *
-   * @param {string} parent
-   * @returns {BuiltComponent}
-   */
-  public static generateBox(parent: string): BuiltComponent {
-    const builder: Builder = new Builder("Box");
-
-    const generatedBoxId: string = builder.addChildNode("Box", parent, null);
-
-    const components: Components = builder.getComponents();
-
-    const generatedBoxComponent: BuiltComponent = {
-      root: generatedBoxId,
-      parent: parent,
-      components: components,
-    };
-
-    return generatedBoxComponent;
-  }
-
-  /**
-   * Input를 생성하는 Method
-   *
-   * @param {string} parent
-   * @returns {BuiltComponent}
-   */
-  public static generateInput(parent: string): BuiltComponent {
-    const builder: Builder = new Builder("Input");
-
-    const generatedInputId: string = builder.addChildNode(
-      "Input",
+    const generatedComponentId: string = builder.addChildNode(
+      type,
       parent,
       null,
     );
 
     const components: Components = builder.getComponents();
 
-    const generatedInputComponent: BuiltComponent = {
-      root: generatedInputId,
+    const generatedComponent: BuiltComponent = {
+      root: generatedComponentId,
       parent: parent,
       components: components,
     };
 
-    return generatedInputComponent;
-  }
-
-  public static generateButton(parent: string): BuiltComponent {
-    const builder: Builder = new Builder("Button");
-
-    const generatedButtonId: string = builder.addChildNode(
-      "Button",
-      parent,
-      null,
-    );
-
-    const components: Components = builder.getComponents();
-
-    const generatedButtonComponent: BuiltComponent = {
-      root: generatedButtonId,
-      parent: parent,
-      components: components,
-    };
-
-    return generatedButtonComponent;
+    return generatedComponent;
   }
 }
-
-export const agentBuilder: AgentGeneratorFunction = {
-  Form: Agent.generateFormGroup,
-  Box: Agent.generateBox,
-  Input: Agent.generateInput,
-  Button: Agent.generateButton,
-};

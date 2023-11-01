@@ -9,7 +9,7 @@ import {
 import { placedTargetComponentSelector } from "@/core/componeents/selectors/target";
 
 // core
-import { agentBuilder } from "@/core/builder/agent";
+import { Agent } from "@/core/builder/agent";
 
 // type
 import type { CommonComponentType, Components } from "@/types/component";
@@ -88,8 +88,9 @@ export const useDragDropTarget = (
 
         setPlacedTargetComponent(movedComponentTarget);
       } else {
-        const generatedComponent: Components = agentBuilder[item.type](
+        const generatedComponent: Components = Agent.generateComponent(
           item.rootComponentType,
+          item.type as CommonComponentType,
         ).components;
 
         const componentObject: Components = {};

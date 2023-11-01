@@ -4,7 +4,9 @@ import { Box } from "@mui/material";
 import { OriginalComponent } from "./original/origialComponent";
 import { OriginalInput } from "./original/OriginalInput";
 import { OriginalButton } from "./original/OriginalButton";
+import { OriginalCheckBox } from "./original/OriginalCheckBox";
 import { OriginalBox } from "./original/OriginalBox";
+import { OriginalTypography } from "./original/OriginalTypography";
 
 // util
 import { checkComponent } from "@/utils/components";
@@ -59,6 +61,15 @@ export const Creator = ({
         );
       }
 
+      case "OriginalCheckBox": {
+        return (
+          <OriginalCheckBox
+            component={component}
+            props={originProps["CheckBox"].props}
+          />
+        );
+      }
+
       case "OriginalButton": {
         return (
           <OriginalButton
@@ -75,6 +86,16 @@ export const Creator = ({
           <OriginalBox component={component} props={originProps["Box"].props}>
             <ChildrenOriginalComponent component={component} />
           </OriginalBox>
+        );
+      }
+
+      case "OriginalTypography": {
+        return (
+          <OriginalTypography
+            component={component}
+            text={originProps["Typography"].text}
+            props={originProps["Typography"].props}
+          />
         );
       }
 

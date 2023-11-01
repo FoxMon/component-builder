@@ -59,6 +59,35 @@ interface OriginProps {
       };
     };
   };
+  CheckBox: {
+    props: {
+      size: {
+        width: string;
+        height: string;
+      };
+      spacing: {
+        marginTop: number;
+        marginRight: number;
+        marginBottom: number;
+        marginLeft: number;
+      };
+    };
+  };
+  Typography: {
+    text: string;
+    props: {
+      size: {
+        width: string;
+        height: string;
+      };
+      spacing: {
+        marginTop: number;
+        marginRight: number;
+        marginBottom: number;
+        marginLeft: number;
+      };
+    };
+  };
 }
 
 export const originProps: OriginProps = {
@@ -106,6 +135,35 @@ export const originProps: OriginProps = {
   Button: {
     label: "I'm button",
     variant: "outlined",
+    props: {
+      size: {
+        width: "100%",
+        height: "100%",
+      },
+      spacing: {
+        marginTop: 0,
+        marginRight: 0,
+        marginBottom: 0,
+        marginLeft: 0,
+      },
+    },
+  },
+  CheckBox: {
+    props: {
+      size: {
+        width: "100%",
+        height: "100%",
+      },
+      spacing: {
+        marginTop: 0,
+        marginRight: 0,
+        marginBottom: 0,
+        marginLeft: 0,
+      },
+    },
+  },
+  Typography: {
+    text: "Simple page with component builder",
     props: {
       size: {
         width: "100%",

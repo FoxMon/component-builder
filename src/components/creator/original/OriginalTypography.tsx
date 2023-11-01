@@ -1,4 +1,4 @@
-import { Box, Button } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 
 // hook
 import { useActiveTarget } from "@/hooks/useActiveTarget";
@@ -9,22 +9,20 @@ import { useDragTarget } from "@/hooks/useDragTarget";
 import { colors } from "@/utils/colors";
 
 // type
-import type { ComponentBase } from "@/types/component";
+import { ComponentBase } from "@/types/component";
 
-interface ButtonProps {
+interface TypographyProps {
   component: ComponentBase;
-  label: string;
-  variant: "outlined" | "contained";
+  text: string;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   props: any;
 }
 
-export const OriginalButton = ({
+export const OriginalTypography = ({
   component,
-  label,
-  variant,
+  text,
   props,
-}: ButtonProps) => {
+}: TypographyProps) => {
   const { activeComponentTarget, handleOriginalComponentClick } =
     useActiveTarget(component.uid, props);
 
@@ -41,6 +39,7 @@ export const OriginalButton = ({
       // @ts-ignore
       ref={drop(ref)}
       sx={{
+        p: 1,
         width: width,
         height: height,
         mt: marginTop,
@@ -53,13 +52,9 @@ export const OriginalButton = ({
             : "none",
       }}
     >
-      <Button
-        fullWidth={true}
-        variant={variant}
-        onClick={handleOriginalComponentClick}
-      >
-        {label}
-      </Button>
+      <Typography variant="h6" onClick={handleOriginalComponentClick}>
+        {text}
+      </Typography>
     </Box>
   );
 };

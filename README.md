@@ -31,3 +31,5 @@ npm run dev
 - Box
 - Button
 - Input
+- CheckBox
+- Typography
