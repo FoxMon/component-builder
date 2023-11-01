@@ -88,6 +88,20 @@ interface OriginProps {
       };
     };
   };
+  Spinner: {
+    props: {
+      size: {
+        width: string;
+        height: string;
+      };
+      spacing: {
+        marginTop: number;
+        marginRight: number;
+        marginBottom: number;
+        marginLeft: number;
+      };
+    };
+  };
 }
 
 export const originProps: OriginProps = {
@@ -164,6 +178,20 @@ export const originProps: OriginProps = {
   },
   Typography: {
     text: "Simple page with component builder",
+    props: {
+      size: {
+        width: "100%",
+        height: "100%",
+      },
+      spacing: {
+        marginTop: 0,
+        marginRight: 0,
+        marginBottom: 0,
+        marginLeft: 0,
+      },
+    },
+  },
+  Spinner: {
     props: {
       size: {
         width: "100%",

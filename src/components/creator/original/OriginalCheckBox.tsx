@@ -46,6 +46,7 @@ export const OriginalCheckBox = ({ component, props }: CheckBoxProps) => {
           activeComponentTarget.cUid === component.uid
             ? `3px dashed ${colors.green500}`
             : "none",
+        cursor: "pointer",
       }}
     >
       <Checkbox onClick={handleOriginalComponentClick} />

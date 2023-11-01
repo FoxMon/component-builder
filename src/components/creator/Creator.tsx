@@ -7,6 +7,7 @@ import { OriginalButton } from "./original/OriginalButton";
 import { OriginalCheckBox } from "./original/OriginalCheckBox";
 import { OriginalBox } from "./original/OriginalBox";
 import { OriginalTypography } from "./original/OriginalTypography";
+import { OriginalSpinner } from "./original/OriginalSpinner";
 
 // util
 import { checkComponent } from "@/utils/components";
@@ -95,6 +96,15 @@ export const Creator = ({
             component={component}
             text={originProps["Typography"].text}
             props={originProps["Typography"].props}
+          />
+        );
+      }
+
+      case "OriginalSpinner": {
+        return (
+          <OriginalSpinner
+            component={component}
+            props={originProps["Spinner"].props}
           />
         );
       }

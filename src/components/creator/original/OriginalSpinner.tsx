@@ -1,4 +1,4 @@
-import { Box, TextField } from "@mui/material";
+import { Box, CircularProgress } from "@mui/material";
 
 // hook
 import { useActiveTarget } from "@/hooks/useActiveTarget";
@@ -9,22 +9,15 @@ import { useDragTarget } from "@/hooks/useDragTarget";
 import { colors } from "@/utils/colors";
 
 // type
-import type { ComponentBase } from "@/types/component";
+import { ComponentBase } from "@/types/component";
 
-interface InputProps {
+interface SpinnerProps {
   component: ComponentBase;
-  label: string;
-  inputSize: "small" | "medium";
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   props: any;
 }
 
-export const OriginalInput = ({
-  component,
-  label,
-  inputSize,
-  props,
-}: InputProps) => {
+export const OriginalSpinner = ({ component, props }: SpinnerProps) => {
   const { activeComponentTarget, handleOriginalComponentClick } =
     useActiveTarget(component.uid, props);
 
@@ -40,22 +33,26 @@ export const OriginalInput = ({
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
       ref={drop(ref)}
-      sx={{
-        width: width,
-        height: height,
-        mt: marginTop,
-        mr: marginRight,
-        mb: marginBottom,
-        ml: marginLeft,
-        border:
-          activeComponentTarget.cUid === component.uid
-            ? `3px dashed ${colors.green500}`
-            : "none",
-        cursor: "pointer",
-      }}
-      onClick={handleOriginalComponentClick}
+      sx={{ display: "flex" }}
     >
-      <TextField label={label} size={inputSize} fullWidth={true} />
+      <CircularProgress
+        sx={{
+          p: 1,
+          width: width,
+          height: height,
+          mt: marginTop,
+          mr: marginRight,
+          mb: marginBottom,
+          ml: marginLeft,
+          border:
+            activeComponentTarget.cUid === component.uid
+              ? `3px dashed ${colors.green500}`
+              : "none",
+          cursor: "pointer",
+        }}
+        size={50}
+        onClick={handleOriginalComponentClick}
+      />
     </Box>
   );
 };

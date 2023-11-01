@@ -14,6 +14,7 @@ import { colors } from "@/utils/colors";
 import { ComponentBase, ChildrenAlias } from "@/types/component";
 
 interface BoxOriginProps {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   props: any;
 }
 
@@ -57,6 +58,7 @@ export const OriginalBox = ({ component, props, children }: BoxProps) => {
   return (
     <Box
       // 영문을 모르겠는 Type 에러
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
       ref={drop(ref)}
       sx={{

@@ -50,6 +50,7 @@ export const OriginalTypography = ({
           activeComponentTarget.cUid === component.uid
             ? `3px dashed ${colors.green500}`
             : "none",
+        cursor: "pointer",
       }}
     >
       <Typography variant="h6" onClick={handleOriginalComponentClick}>
