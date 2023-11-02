@@ -33,3 +33,5 @@ npm run dev
 - Input
 - CheckBox
 - Typography
+- Spinner
+- Select
