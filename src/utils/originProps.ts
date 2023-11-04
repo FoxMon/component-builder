@@ -137,7 +137,7 @@ export const originProps: OriginProps = {
     props: {
       size: {
         width: "100%",
-        height: "2rem",
+        height: "3.5rem",
       },
       spacing: {
         marginTop: 0,
