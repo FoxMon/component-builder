@@ -4,6 +4,7 @@ import { DropTargetMonitor, useDrop } from "react-dnd";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { placedTargetComponent } from "@/core/componeents/target";
 import { placedTargetComponentSelector } from "@/core/componeents/selectors/target";
+import { activeTarget } from "@/core/componeents/activeTarget";
 
 // core
 import { Agent } from "@/core/builder/agent";
@@ -11,6 +12,7 @@ import { Agent } from "@/core/builder/agent";
 // type
 import type { CommonComponentType, Components } from "@/types/component";
 import type { DragDropComponent } from "@/types/common";
+import type { ActiveTarget } from "@/core/componeents/activeTarget";
 
 // utils
 import { components } from "@/utils/components";
@@ -28,12 +30,50 @@ export const useDragDropTarget = (
   const currentPlacedTargetComponent: Nullable<Components> = useRecoilValue(
     placedTargetComponentSelector,
   );
+  const currentActiveTarget: ActiveTarget = useRecoilValue(activeTarget);
 
   const [{ isOver }, drop] = useDrop({
     accept: accept,
     collect: (monitor) => ({
       isOver: monitor.isOver({ shallow: true }) && monitor.canDrop(),
     }),
+    hover: (item) => {
+      /**
+       * 컴포넌트가 클릭 ( Active Mode ) 이 된 상태에서
+       * Drag Drop으로 위 아래 위치 조정이 가능하다.
+       */
+      if (
+        currentActiveTarget.isActive &&
+        cUid !== "root" &&
+        item.cUid !== cUid
+      ) {
+        if (!currentPlacedTargetComponent) {
+          return;
+        }
+
+        // Order Index 교체
+        const newOrderedComponents: Components = {
+          ...currentPlacedTargetComponent,
+          [cUid]: {
+            ...currentPlacedTargetComponent[cUid],
+            orderIndex: currentPlacedTargetComponent[item.cUid].orderIndex,
+          },
+          [item.cUid]: {
+            ...currentPlacedTargetComponent[item.cUid],
+            orderIndex: currentPlacedTargetComponent[cUid].orderIndex,
+          },
+        };
+
+        const sortedNewOrderedComponents = Object.entries(newOrderedComponents)
+          .sort(
+            ([, first], [, second]) =>
+              (first.orderIndex as number) - (second.orderIndex as number),
+          )
+          .reduce((r, [k, v]) => ({ ...r, [k]: v }), {});
+
+        setPlacedTargetComponent(sortedNewOrderedComponents);
+      }
+    },
     drop: (item: DragDropComponent, monitor: DropTargetMonitor) => {
       if (!monitor.isOver()) {
         // 놓여 졌을 때만 특정 동작을 수행하도록 한다.
@@ -94,9 +134,20 @@ export const useDragDropTarget = (
           item.type as CommonComponentType,
         ).components;
 
+        const totalPlacedTargetComponentLength: number = (() => {
+          if (currentPlacedTargetComponent) {
+            return Object.keys(currentPlacedTargetComponent).length;
+          }
+
+          return 0;
+        })();
+
         const componentObject: Components = {};
         Object.keys(generatedComponent).forEach((uid: string) => {
           componentObject[uid] = generatedComponent[uid];
+
+          componentObject[uid].orderIndex =
+            totalPlacedTargetComponentLength + 1;
         });
 
         setPlacedTargetComponent({

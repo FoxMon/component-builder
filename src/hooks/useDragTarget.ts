@@ -13,6 +13,7 @@ export const useDragTarget = (component: ComponentBase) => {
       cUid: component.uid,
       commonComponentType: component.commonComponentType,
       isMoved: true,
+      orderIndex: component.orderIndex,
     },
     collect: (monitor) => ({
       isDragging: monitor.isDragging,
