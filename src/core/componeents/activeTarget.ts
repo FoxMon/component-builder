@@ -1,6 +1,6 @@
 import { atom } from "recoil";
 
-interface ActiveTarget {
+export interface ActiveTarget {
   cUid: string;
   isActive: boolean;
   isSelected: boolean;
