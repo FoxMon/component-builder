@@ -26,7 +26,7 @@ export const Sidebar = () => {
       menuItems,
     ) as CommonComponentType[];
     const searchResults: string[] = components.filter((comp: string) =>
-      comp.includes(searchText),
+      comp.toLowerCase().includes(searchText.toLowerCase()),
     );
 
     setSearchComponent(searchResults);
