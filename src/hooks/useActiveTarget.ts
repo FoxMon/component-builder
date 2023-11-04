@@ -7,7 +7,9 @@ export const useActiveTarget = (componentUid: string, props: any) => {
   const [activeComponentTarget, setActiveComponentTarget] =
     useRecoilState(activeTarget);
 
-  const handleOriginalComponentClick = () => {
+  const handleOriginalComponentClick = (e: MouseEvent) => {
+    e.stopPropagation();
+
     setActiveComponentTarget({
       cUid: componentUid,
       isActive: true,
