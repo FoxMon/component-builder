@@ -8,6 +8,7 @@ import { OriginalCheckBox } from "./original/OriginalCheckBox";
 import { OriginalBox } from "./original/OriginalBox";
 import { OriginalTypography } from "./original/OriginalTypography";
 import { OriginalSpinner } from "./original/OriginalSpinner";
+import { OriginalSelect } from "./original/OriginalSelect";
 
 // util
 import { checkComponent } from "@/utils/components";
@@ -105,6 +106,17 @@ export const Creator = ({
           <OriginalSpinner
             component={component}
             props={originProps["Spinner"].props}
+          />
+        );
+      }
+
+      case "OriginalSelect": {
+        return (
+          <OriginalSelect
+            component={component}
+            label={originProps["Select"].label}
+            options={originProps["Select"].options}
+            props={originProps["Select"].props}
           />
         );
       }

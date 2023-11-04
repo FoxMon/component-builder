@@ -1,6 +1,11 @@
 // util
 import { colors } from "./colors";
 
+interface Option {
+  name: string;
+  value: string;
+}
+
 interface OriginProps {
   Box: {
     variant: "flex" | "grid" | "block";
@@ -89,6 +94,22 @@ interface OriginProps {
     };
   };
   Spinner: {
+    props: {
+      size: {
+        width: string;
+        height: string;
+      };
+      spacing: {
+        marginTop: number;
+        marginRight: number;
+        marginBottom: number;
+        marginLeft: number;
+      };
+    };
+  };
+  Select: {
+    label: string;
+    options: Option[];
     props: {
       size: {
         width: string;
@@ -192,6 +213,35 @@ export const originProps: OriginProps = {
     },
   },
   Spinner: {
+    props: {
+      size: {
+        width: "100%",
+        height: "100%",
+      },
+      spacing: {
+        marginTop: 0,
+        marginRight: 0,
+        marginBottom: 0,
+        marginLeft: 0,
+      },
+    },
+  },
+  Select: {
+    label: "Select Input",
+    options: [
+      {
+        name: "Select Menu 1",
+        value: "Menu 1",
+      },
+      {
+        name: "Select Menu 2",
+        value: "Menu 2",
+      },
+      {
+        name: "Select Menu 3",
+        value: "Menu 3",
+      },
+    ],
     props: {
       size: {
         width: "100%",
