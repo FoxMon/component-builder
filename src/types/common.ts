@@ -14,4 +14,5 @@ export interface DragDropComponent {
   rootComponentType: string;
   isMoved: string;
   isChildComponent: boolean;
+  orderIndex: number;
 }
