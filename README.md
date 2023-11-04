@@ -5,7 +5,7 @@ load your previous designed page.
 
 > Author: FoxMon [Ethan]
 >
-> React18, TypeScript, Recoil
+> React18, TypeScript, Recoil, react-dnd
 >
 > Component Builder
 
