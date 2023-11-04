@@ -7,8 +7,9 @@ import { Creator } from "../creator/Creator";
 import { useDragDropTarget } from "@/hooks/useDragDropTarget";
 
 // recoil
-import { useRecoilValue } from "recoil";
+import { useRecoilValue, useSetRecoilState } from "recoil";
 import { placedTargetComponentSelector } from "@/core/componeents/selectors/target";
+import { activeTarget } from "@/core/componeents/activeTarget";
 
 // util
 import { filterComponent } from "@/utils/components";
@@ -23,6 +24,16 @@ export const ComponentEditor = () => {
   const placedComponent: Nullable<Components> = useRecoilValue(
     placedTargetComponentSelector,
   );
+  const setActiveTarget = useSetRecoilState(activeTarget);
+
+  const handleEditorOutsideClick = () => {
+    setActiveTarget({
+      cUid: "",
+      isActive: false,
+      isSelected: false,
+      props: {},
+    });
+  };
 
   return (
     <Box
@@ -35,13 +46,14 @@ export const ComponentEditor = () => {
         width: "100%",
         display: "flex",
       }}
+      onClick={handleEditorOutsideClick}
     >
       <Box sx={{ m: "0 auto", width: "100%" }}>
         {placedComponent ? (
           Object.keys(placedComponent)
             .filter((id: string) => filterComponent(placedComponent[id].parent))
             .map((key: string) => (
-              <Box key={key}>
+              <Box key={key} sx={{ p: 1 }}>
                 <Creator
                   componentType={placedComponent[key]?.commonComponentType}
                   component={placedComponent[key]}
