@@ -13,5 +13,5 @@ export interface DragDropComponent {
   componentType: CommonComponentType;
   rootComponentType: string;
   isMoved: string;
-  isChildCOmponent: boolean;
+  isChildComponent: boolean;
 }

@@ -2,10 +2,7 @@ import { DropTargetMonitor, useDrop } from "react-dnd";
 
 // recoil
 import { useRecoilValue, useSetRecoilState } from "recoil";
-import {
-  targetComponent,
-  placedTargetComponent,
-} from "@/core/componeents/target";
+import { placedTargetComponent } from "@/core/componeents/target";
 import { placedTargetComponentSelector } from "@/core/componeents/selectors/target";
 
 // core
@@ -26,7 +23,6 @@ export const useDragDropTarget = (
   isPossible: boolean = true,
   accept: CommonComponentType[] = components,
 ) => {
-  const setTargetComponent = useSetRecoilState(targetComponent);
   const setPlacedTargetComponent = useSetRecoilState(placedTargetComponent);
 
   const currentPlacedTargetComponent: Nullable<Components> = useRecoilValue(
@@ -45,6 +41,11 @@ export const useDragDropTarget = (
       }
 
       if (item.isMoved) {
+        if (item.cUid === cUid) {
+          // 자기 자신일때는 수행 X
+          return;
+        }
+
         if (!currentPlacedTargetComponent) {
           // 당연히 배치된 Component가 없다면 여기 조건문을 통과 안하겠지만
           // 그래도 혹시 모르니 예외처리를 진행하도록 한다.
@@ -96,11 +97,6 @@ export const useDragDropTarget = (
         const componentObject: Components = {};
         Object.keys(generatedComponent).forEach((uid: string) => {
           componentObject[uid] = generatedComponent[uid];
-        });
-
-        setTargetComponent({
-          selectedComponentUid: cUid,
-          components: componentObject,
         });
 
         setPlacedTargetComponent({

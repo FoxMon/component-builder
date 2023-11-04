@@ -4,6 +4,7 @@ interface ActiveTarget {
   cUid: string;
   isActive: boolean;
   isSelected: boolean;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   props: any;
 }
 
