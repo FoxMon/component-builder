@@ -53,7 +53,10 @@ export interface ComponentBase {
    */
   rootCommonComponentType: CommonComponentType;
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   props?: any;
+
+  orderIndex?: number;
 }
 
 /**
