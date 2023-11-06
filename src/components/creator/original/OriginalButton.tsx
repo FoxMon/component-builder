@@ -56,6 +56,7 @@ export const OriginalButton = ({
       <Button
         fullWidth={true}
         variant={variant}
+        sx={{ ...activeComponentTarget.props }}
         onClick={handleOriginalComponentClick}
       >
         {label}
