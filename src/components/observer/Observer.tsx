@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useState, useEffect, useMemo, useCallback, ChangeEvent } from "react";
 import {
   Box,
   Typography,
@@ -11,7 +11,7 @@ import {
 } from "@mui/material";
 
 // recoil
-import { useRecoilValue } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import { activeTarget } from "@/core/componeents/activeTarget";
 import { activeTargetSelector } from "@/core/componeents/selectors/activeTarget";
 
@@ -20,8 +20,15 @@ import RestartAltIcon from "@mui/icons-material/RestartAlt";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
+import type { ActiveTarget } from "@/core/componeents/activeTarget";
+
+interface FormValue {
+  [key: string]: string;
+}
+
 export const Observer = () => {
-  const selectedTargetComponent = useRecoilValue(activeTarget);
+  const [selectedTargetComponent, setSelectedTargetComponent] =
+    useRecoilState(activeTarget);
   const activeComponentTarget = useRecoilValue(
     activeTargetSelector(selectedTargetComponent.cUid),
   );
@@ -32,6 +39,52 @@ export const Observer = () => {
         ? activeComponentTarget.commonComponentType
         : "COMPONENT NAME",
     [activeComponentTarget?.commonComponentType],
+  );
+
+  const [formValue, setFormValue] = useState(() => {
+    const propForm: FormValue = {};
+
+    Object.keys(selectedTargetComponent.props).forEach((propName: string) => {
+      propForm[propName] = selectedTargetComponent.props[propName];
+    });
+
+    return propForm;
+  });
+
+  useEffect(() => {
+    setFormValue(() => {
+      const propForm: FormValue = {};
+
+      Object.keys(selectedTargetComponent.props).forEach((propName: string) => {
+        propForm[propName] = selectedTargetComponent.props[propName];
+      });
+
+      return propForm;
+    });
+  }, [selectedTargetComponent, activeComponentTarget]);
+
+  const handleFormValueChange = useCallback(
+    (e: ChangeEvent<HTMLInputElement>) => {
+      const { name, value } = e.target;
+
+      setFormValue((prev: FormValue) => {
+        return {
+          ...prev,
+          [name]: value,
+        };
+      });
+
+      setSelectedTargetComponent((prev: ActiveTarget) => {
+        return {
+          ...prev,
+          props: {
+            ...prev.props,
+            [name]: value,
+          },
+        };
+      });
+    },
+    [setSelectedTargetComponent],
   );
 
   return (
@@ -81,7 +134,9 @@ export const Observer = () => {
                 expandIcon={<ExpandMoreIcon />}
                 sx={{ background: "#F7FAFC" }}
               >
-                <Typography variant="subtitle2">{propName}</Typography>
+                <Typography variant="subtitle2">
+                  {propName.toUpperCase()}
+                </Typography>
               </AccordionSummary>
               <AccordionDetails
                 sx={{ display: "flex", flexDirection: "column", gap: 2 }}
@@ -94,11 +149,14 @@ export const Observer = () => {
                       </Typography>
                       <TextField
                         size="small"
+                        name={compProps}
+                        value={formValue[compProps] || ""}
                         inputProps={{
                           style: {
                             height: "18px",
                           },
                         }}
+                        onChange={handleFormValueChange}
                       />
                     </Box>
                   ),
