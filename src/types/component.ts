@@ -53,9 +53,18 @@ export interface ComponentBase {
    */
   rootCommonComponentType: CommonComponentType;
 
+  /**
+   * props 에 대한 Type을 정의해야 하는데,
+   * Component마다 가지고 있을 수 있는 props의 형태가 너무나도
+   * 다양하기 때문에 any로,,,
+   */
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   props?: any;
 
+  /**
+   * Drag drop 수행 시 component를 정렬 시킬 순서를
+   * 정의하기 위한 property
+   */
   orderIndex?: number;
 }
 
