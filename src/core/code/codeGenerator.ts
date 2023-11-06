@@ -21,17 +21,21 @@ export class CodeGenerator {
   public async generateCode(components: Components): Promise<string> {
     let codeStr: string = "";
 
-    Object.keys(components).forEach((uid: string) => {
-      codeStr += `<${components[uid].commonComponentType}>`;
+    if (components) {
+      Object.keys(components).forEach((uid: string) => {
+        codeStr += `<${components[uid].commonComponentType}>`;
 
-      components[uid].children.forEach((chUid: string) => {
-        codeStr += `<${components[chUid].commonComponentType} />`;
+        components[uid].children.forEach((chUid: string) => {
+          codeStr += `<${components[chUid].commonComponentType} />`;
+        });
+
+        codeStr += `</${components[uid].commonComponentType}>`;
       });
-
-      codeStr += `</${components[uid].commonComponentType}>`;
-    });
+    }
 
     this.code = `
+        import React from "react";
+
         const App = () => {
             return (
                 <div>
