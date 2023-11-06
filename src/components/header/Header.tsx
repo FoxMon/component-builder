@@ -16,9 +16,8 @@ import { HeaderMenu } from "./HeaderMenu";
 import { EditorBackgroundStateContext } from "../contexts/editorContext";
 
 export const Header = () => {
-  const { updateBackgroundModeState } = useContext(
-    EditorBackgroundStateContext,
-  );
+  const { isCodeMode, updateBackgroundModeState, updateCodeModeState } =
+    useContext(EditorBackgroundStateContext);
 
   const handleGithubIconClick = () => {
     window.open("https://github.com/FoxMon/component-builder");
@@ -41,6 +40,18 @@ export const Header = () => {
                   sx={{ color: "#B2F5EA" }}
                   size="small"
                   onChange={updateBackgroundModeState}
+                />
+              }
+            />
+            <FormControlLabel
+              sx={{ color: "#FFFFFFCF" }}
+              label="CODE"
+              control={
+                <Checkbox
+                  sx={{ color: "#B2F5EA" }}
+                  size="small"
+                  checked={isCodeMode}
+                  onChange={updateCodeModeState}
                 />
               }
             />
