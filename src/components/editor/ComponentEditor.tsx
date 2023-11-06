@@ -1,7 +1,12 @@
+import { useState, useContext } from "react";
 import { Box, Typography } from "@mui/material";
+import SplitPane from "split-pane-react";
+import "split-pane-react/esm/themes/default.css";
 
 // project
 import { Creator } from "../creator/Creator";
+import { CodeSection } from "../codeSection/CodeSection";
+import { EditorBackgroundStateContext } from "../contexts/editorContext";
 
 // hooks
 import { useDragDropTarget } from "@/hooks/useDragDropTarget";
@@ -26,6 +31,10 @@ export const ComponentEditor = () => {
   );
   const setActiveTarget = useSetRecoilState(activeTarget);
 
+  const [sizes, setSizes] = useState<(number | string)[]>([100, 25, "auto"]);
+
+  const { isCodeMode } = useContext(EditorBackgroundStateContext);
+
   const handleEditorOutsideClick = () => {
     setActiveTarget({
       cUid: "",
@@ -34,39 +43,65 @@ export const ComponentEditor = () => {
       props: {},
     });
   };
+
   return (
-    <Box
-      ref={drop}
-      sx={{
-        p: 2,
-        position: "relative",
-        height: "auto",
-        minHeight: "100vh",
-        width: "100%",
-        display: "flex",
-      }}
-      onClick={handleEditorOutsideClick}
-    >
-      <Box sx={{ m: "0 auto", width: "100%" }}>
-        {placedComponent ? (
-          Object.keys(placedComponent)
-            .filter((id: string) => filterComponent(placedComponent[id].parent))
-            .map((key: string) => (
-              <Box key={key} sx={{ p: 1 }}>
-                <Creator
-                  componentType={placedComponent[key]?.commonComponentType}
-                  component={placedComponent[key]}
-                  isWrapped={false}
-                />
-              </Box>
-            ))
+    <Box sx={{ height: "100%" }}>
+      {/* @ts-ignore */}
+      <SplitPane
+        sizes={sizes}
+        split="horizontal"
+        onChange={(sizes) => setSizes(sizes)}
+      >
+        <Box
+          ref={drop}
+          sx={{
+            p: 2,
+            position: "relative",
+            height: "auto",
+            minHeight: "100vh",
+            width: "100%",
+            display: "flex",
+          }}
+          onClick={handleEditorOutsideClick}
+        >
+          <Box sx={{ m: "0 auto", width: "100%" }}>
+            {placedComponent ? (
+              Object.keys(placedComponent)
+                .filter((id: string) =>
+                  filterComponent(placedComponent[id].parent),
+                )
+                .map((key: string) => (
+                  <Box key={key} sx={{ p: 1 }}>
+                    <Creator
+                      componentType={placedComponent[key]?.commonComponentType}
+                      component={placedComponent[key]}
+                      isWrapped={false}
+                    />
+                  </Box>
+                ))
+            ) : (
+              <Typography variant="subtitle2" sx={{ fontSize: "1.25rem" }}>
+                Drag component to start design your page without programming !
+                Or load your previous designed page.
+              </Typography>
+            )}
+          </Box>
+        </Box>
+        {isCodeMode ? (
+          <Box
+            sx={{
+              height: "100%",
+              display: "flex",
+              alignItems: "center",
+              background: "rgb(30, 30, 30);",
+            }}
+          >
+            <CodeSection />
+          </Box>
         ) : (
-          <Typography variant="subtitle2" sx={{ fontSize: "1.25rem" }}>
-            Drag component to start design your page without programming ! Or
-            load your previous designed page.
-          </Typography>
+          <Box></Box>
         )}
-      </Box>
+      </SplitPane>
     </Box>
   );
 };
