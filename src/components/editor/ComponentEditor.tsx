@@ -18,8 +18,6 @@ import { filterComponent } from "@/utils/components";
 import type { Nullable } from "@/types/common";
 import type { Components } from "@/types/component";
 
-import { CodeGenerator } from "@/core/code/codeGenerator";
-
 export const ComponentEditor = () => {
   const { drop } = useDragDropTarget("root", true);
 
@@ -36,12 +34,6 @@ export const ComponentEditor = () => {
       props: {},
     });
   };
-
-  const codeGenerator = new CodeGenerator();
-  codeGenerator
-    .generateCode(placedComponent as Components)
-    .then((data) => console.log(data));
-
   return (
     <Box
       ref={drop}
