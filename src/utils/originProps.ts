@@ -17,18 +17,18 @@ interface OriginProps {
     };
     props: {
       size: {
-        width: string | number;
-        height: string | number;
+        width: string;
+        height: string;
       };
       spacing: {
-        marginTop: number;
-        marginRight: number;
-        marginBottom: number;
-        marginLeft: number;
-        paddingTop: number;
-        paddingRight: number;
-        paddingBottom: number;
-        paddingLeft: number;
+        marginTop: string;
+        marginRight: string;
+        marginBottom: string;
+        marginLeft: string;
+        paddingTop: string;
+        paddingRight: string;
+        paddingBottom: string;
+        paddingLeft: string;
       };
     };
   };
@@ -41,10 +41,10 @@ interface OriginProps {
         height: string;
       };
       spacing: {
-        marginTop: number;
-        marginRight: number;
-        marginBottom: number;
-        marginLeft: number;
+        marginTop: string;
+        marginRight: string;
+        marginBottom: string;
+        marginLeft: string;
       };
     };
   };
@@ -57,10 +57,10 @@ interface OriginProps {
         height: string;
       };
       spacing: {
-        marginTop: number;
-        marginRight: number;
-        marginBottom: number;
-        marginLeft: number;
+        marginTop: string;
+        marginRight: string;
+        marginBottom: string;
+        marginLeft: string;
       };
     };
   };
@@ -71,10 +71,10 @@ interface OriginProps {
         height: string;
       };
       spacing: {
-        marginTop: number;
-        marginRight: number;
-        marginBottom: number;
-        marginLeft: number;
+        marginTop: string;
+        marginRight: string;
+        marginBottom: string;
+        marginLeft: string;
       };
     };
   };
@@ -86,10 +86,10 @@ interface OriginProps {
         height: string;
       };
       spacing: {
-        marginTop: number;
-        marginRight: number;
-        marginBottom: number;
-        marginLeft: number;
+        marginTop: string;
+        marginRight: string;
+        marginBottom: string;
+        marginLeft: string;
       };
     };
   };
@@ -100,10 +100,10 @@ interface OriginProps {
         height: string;
       };
       spacing: {
-        marginTop: number;
-        marginRight: number;
-        marginBottom: number;
-        marginLeft: number;
+        marginTop: string;
+        marginRight: string;
+        marginBottom: string;
+        marginLeft: string;
       };
     };
   };
@@ -116,10 +116,10 @@ interface OriginProps {
         height: string;
       };
       spacing: {
-        marginTop: number;
-        marginRight: number;
-        marginBottom: number;
-        marginLeft: number;
+        marginTop: string;
+        marginRight: string;
+        marginBottom: string;
+        marginLeft: string;
       };
     };
   };
@@ -140,14 +140,14 @@ export const originProps: OriginProps = {
         height: "3.5rem",
       },
       spacing: {
-        marginTop: 0,
-        marginRight: 0,
-        marginBottom: 0,
-        marginLeft: 0,
-        paddingTop: 0,
-        paddingRight: 0,
-        paddingBottom: 0,
-        paddingLeft: 0,
+        marginTop: "0px",
+        marginRight: "0px",
+        marginBottom: "0px",
+        marginLeft: "0px",
+        paddingTop: "0px",
+        paddingRight: "0px",
+        paddingBottom: "0px",
+        paddingLeft: "0px",
       },
     },
   },
@@ -160,10 +160,10 @@ export const originProps: OriginProps = {
         height: "100%",
       },
       spacing: {
-        marginTop: 0,
-        marginRight: 0,
-        marginBottom: 0,
-        marginLeft: 0,
+        marginTop: "0px",
+        marginRight: "0px",
+        marginBottom: "0px",
+        marginLeft: "0px",
       },
     },
   },
@@ -176,10 +176,10 @@ export const originProps: OriginProps = {
         height: "100%",
       },
       spacing: {
-        marginTop: 0,
-        marginRight: 0,
-        marginBottom: 0,
-        marginLeft: 0,
+        marginTop: "0px",
+        marginRight: "0px",
+        marginBottom: "0px",
+        marginLeft: "0px",
       },
     },
   },
@@ -190,10 +190,10 @@ export const originProps: OriginProps = {
         height: "100%",
       },
       spacing: {
-        marginTop: 0,
-        marginRight: 0,
-        marginBottom: 0,
-        marginLeft: 0,
+        marginTop: "0px",
+        marginRight: "0px",
+        marginBottom: "0px",
+        marginLeft: "0px",
       },
     },
   },
@@ -205,10 +205,10 @@ export const originProps: OriginProps = {
         height: "100%",
       },
       spacing: {
-        marginTop: 0,
-        marginRight: 0,
-        marginBottom: 0,
-        marginLeft: 0,
+        marginTop: "0px",
+        marginRight: "0px",
+        marginBottom: "0px",
+        marginLeft: "0px",
       },
     },
   },
@@ -219,10 +219,10 @@ export const originProps: OriginProps = {
         height: "100%",
       },
       spacing: {
-        marginTop: 0,
-        marginRight: 0,
-        marginBottom: 0,
-        marginLeft: 0,
+        marginTop: "0px",
+        marginRight: "0px",
+        marginBottom: "0px",
+        marginLeft: "0px",
       },
     },
   },
@@ -248,10 +248,10 @@ export const originProps: OriginProps = {
         height: "100%",
       },
       spacing: {
-        marginTop: 0,
-        marginRight: 0,
-        marginBottom: 0,
-        marginLeft: 0,
+        marginTop: "0px",
+        marginRight: "0px",
+        marginBottom: "0px",
+        marginLeft: "0px",
       },
     },
   },
