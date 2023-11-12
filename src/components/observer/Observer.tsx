@@ -37,7 +37,7 @@ export const Observer = () => {
     () =>
       activeComponentTarget?.commonComponentType
         ? activeComponentTarget.commonComponentType
-        : "COMPONENT NAME",
+        : "NAME",
     [activeComponentTarget?.commonComponentType],
   );
 
@@ -88,17 +88,17 @@ export const Observer = () => {
   );
 
   return (
-    <Box sx={{ background: "white", borderLeft: "1px solid #E2E8F0" }}>
+    <Box sx={{ background: "#FFFFFF", borderLeft: "1px solid #E2E8F0" }}>
       <Box
         sx={{
-          py: 1.2,
+          py: 0.5,
           px: 2,
           minWidth: 226,
           width: "100%",
           display: "flex",
           background: "#FFA630",
-          flexDirection: "column",
           justifyContent: "space-between",
+          alignItems: "center",
         }}
       >
         <Typography
@@ -107,25 +107,24 @@ export const Observer = () => {
         >
           {componentName}
         </Typography>
+        <Stack
+          direction="row"
+          px={1}
+          py={1}
+          spacing={1}
+          alignItems="center"
+          justifyContent="flex-end"
+        >
+          <Box>
+            <Typography variant="caption" sx={{ cursor: "pointer", mr: 0.5 }}>
+              <RestartAltIcon sx={{ fontSize: "16px" }} />
+            </Typography>
+            <Typography variant="caption" sx={{ cursor: "pointer" }}>
+              <DeleteForeverIcon sx={{ fontSize: "16px" }} />
+            </Typography>
+          </Box>
+        </Stack>
       </Box>
-      <Stack
-        direction="row"
-        px={1}
-        py={1}
-        spacing={1}
-        alignItems="center"
-        justifyContent="flex-end"
-      >
-        <Box>
-          <Typography variant="caption" sx={{ cursor: "pointer", mr: 0.5 }}>
-            <RestartAltIcon sx={{ fontSize: "16px" }} />
-          </Typography>
-          <Typography variant="caption" sx={{ cursor: "pointer" }}>
-            <DeleteForeverIcon sx={{ fontSize: "16px" }} />
-          </Typography>
-        </Box>
-      </Stack>
-      <Divider />
       <Box>
         {selectedTargetComponent?.cUid &&
           Object.keys(selectedTargetComponent.props).map((propName: string) => (
