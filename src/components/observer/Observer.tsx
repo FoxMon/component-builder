@@ -13,6 +13,7 @@ import {
 // recoil
 import { useRecoilState, useRecoilValue } from "recoil";
 import { activeTarget } from "@/core/componeents/activeTarget";
+import { placedTargetComponent } from "@/core/componeents/target";
 import { activeTargetSelector } from "@/core/componeents/selectors/activeTarget";
 
 // assets
@@ -20,7 +21,9 @@ import RestartAltIcon from "@mui/icons-material/RestartAlt";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
+// type
 import type { ActiveTarget } from "@/core/componeents/activeTarget";
+import type { Components } from "@/types/component";
 
 interface FormValue {
   [key: string]: string;
@@ -29,6 +32,10 @@ interface FormValue {
 export const Observer = () => {
   const [selectedTargetComponent, setSelectedTargetComponent] =
     useRecoilState(activeTarget);
+  const [placedComponents, setPlacedComponents] = useRecoilState(
+    placedTargetComponent,
+  );
+
   const activeComponentTarget = useRecoilValue(
     activeTargetSelector(selectedTargetComponent.cUid),
   );
@@ -87,6 +94,32 @@ export const Observer = () => {
     [setSelectedTargetComponent],
   );
 
+  const handleResetButtonClick = useCallback(() => {
+    setPlacedComponents({});
+    setSelectedTargetComponent({
+      cUid: "",
+      isActive: false,
+      isSelected: false,
+      commonComponentType: "",
+      props: {},
+    });
+  }, [setPlacedComponents, setSelectedTargetComponent]);
+
+  const handleTrashButtonClick = useCallback(() => {
+    if (placedComponents) {
+      const activeComponentUid: string = selectedTargetComponent.cUid;
+      const placedComponentObject: Components = {};
+
+      Object.keys(placedComponents).forEach((uid: string) => {
+        if (uid !== activeComponentUid) {
+          placedComponentObject[uid] = placedComponents[uid];
+        }
+      });
+
+      setPlacedComponents(placedComponentObject);
+    }
+  }, [placedComponents, selectedTargetComponent.cUid, setPlacedComponents]);
+
   return (
     <Box sx={{ background: "#FFFFFF", borderLeft: "1px solid #E2E8F0" }}>
       <Box
@@ -125,6 +158,32 @@ export const Observer = () => {
           </Box>
         </Stack>
       </Box>
+      <Stack
+        direction="row"
+        px={1}
+        py={1}
+        spacing={1}
+        alignItems="center"
+        justifyContent="flex-end"
+      >
+        <Box>
+          <Typography
+            variant="caption"
+            sx={{ cursor: "pointer", mr: 0.5 }}
+            onClick={handleResetButtonClick}
+          >
+            <RestartAltIcon sx={{ fontSize: "16px" }} />
+          </Typography>
+          <Typography
+            variant="caption"
+            sx={{ cursor: "pointer" }}
+            onClick={handleTrashButtonClick}
+          >
+            <DeleteForeverIcon sx={{ fontSize: "16px" }} />
+          </Typography>
+        </Box>
+      </Stack>
+      <Divider />
       <Box>
         {selectedTargetComponent?.cUid &&
           Object.keys(selectedTargetComponent.props).map((propName: string) => (

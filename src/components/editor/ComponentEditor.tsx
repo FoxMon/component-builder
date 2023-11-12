@@ -40,6 +40,7 @@ export const ComponentEditor = () => {
       cUid: "",
       isActive: false,
       isSelected: false,
+      commonComponentType: "",
       props: {},
     });
   };

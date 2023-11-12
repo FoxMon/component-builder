@@ -37,9 +37,6 @@ interface MenuItems {
 
 export const menuItems: MenuItems = {
   Box: {},
-  Flex: {},
-  Grid: {},
-  Stack: {},
   Form: {
     children: {
       Input: {},
