@@ -2,7 +2,6 @@ import { useState, useEffect, useMemo, useCallback, ChangeEvent } from "react";
 import {
   Box,
   Typography,
-  Stack,
   Divider,
   Accordion,
   AccordionSummary,
@@ -124,8 +123,8 @@ export const Observer = () => {
     <Box sx={{ background: "#FFFFFF", borderLeft: "1px solid #E2E8F0" }}>
       <Box
         sx={{
-          py: 0.5,
-          px: 2,
+          py: 1,
+          px: 1.5,
           minWidth: 226,
           width: "100%",
           display: "flex",
@@ -140,32 +139,6 @@ export const Observer = () => {
         >
           {componentName}
         </Typography>
-        <Stack
-          direction="row"
-          px={1}
-          py={1}
-          spacing={1}
-          alignItems="center"
-          justifyContent="flex-end"
-        >
-          <Box>
-            <Typography variant="caption" sx={{ cursor: "pointer", mr: 0.5 }}>
-              <RestartAltIcon sx={{ fontSize: "16px" }} />
-            </Typography>
-            <Typography variant="caption" sx={{ cursor: "pointer" }}>
-              <DeleteForeverIcon sx={{ fontSize: "16px" }} />
-            </Typography>
-          </Box>
-        </Stack>
-      </Box>
-      <Stack
-        direction="row"
-        px={1}
-        py={1}
-        spacing={1}
-        alignItems="center"
-        justifyContent="flex-end"
-      >
         <Box>
           <Typography
             variant="caption"
@@ -182,8 +155,7 @@ export const Observer = () => {
             <DeleteForeverIcon sx={{ fontSize: "16px" }} />
           </Typography>
         </Box>
-      </Stack>
-      <Divider />
+      </Box>
       <Box>
         {selectedTargetComponent?.cUid &&
           Object.keys(selectedTargetComponent.props).map((propName: string) => (
